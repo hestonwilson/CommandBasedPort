@@ -21,6 +21,12 @@ m_odometry{m_kinematics, PenguinConstants::MathConstants::ZERO_ROT, m_location} 
   printf("front left angle offset: %f", BACK_LEFT_ANGLE_OFFSET.to<double>());
   printf("front left angle offset: %f", BACK_RIGHT_ANGLE_OFFSET.to<double>());
 }
+void DriveSubsystem::Periodic() {
+  m_odometry.Update(
+    GetAngleAsRot(),
+    m_frontLeftModule.GetState(), m_frontRightModule.GetState(), 
+    m_backLeftModule.GetState(), m_backRightModule.GetState());
+}
 void DriveSubsystem::Drive(units::meters_per_second_t fwd, units::meters_per_second_t str, units::radians_per_second_t rot, bool fieldOriented, frc::Translation2d centerOfRotation) {
   // rot *= 2. / HYPOT; // TODO: see if this improves things
 

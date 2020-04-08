@@ -14,7 +14,7 @@
 class DriveSubsystem : public frc2::SubsystemBase {
 public:
   DriveSubsystem();
-  //void Periodic() override; //not sure what to do with this yet.
+  void Periodic() override; 
 
 //public methods:
 public:
@@ -27,7 +27,7 @@ public:
   frc::Pose2d m_location;
   void PutDiagnostics();
   
-
+  //drive constants
   const units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; // TODO: make accurate. flag: CONTROL_VELOCITY_DIRECTLY
   const units::meters_per_second_squared_t K_MAX_ACCELERATION = units::meters_per_second_squared_t(2); // TODO: make accurate
   const units::radians_per_second_t K_MAX_ANGULAR_VELOCITY = units::radians_per_second_t(2.5);

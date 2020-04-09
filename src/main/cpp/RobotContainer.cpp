@@ -9,6 +9,7 @@
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
 #include "PenguinUtil.h"
+#include "subsystems/ShooterSubsystem.h"
 
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/SwerveControllerCommand.h>
@@ -20,7 +21,8 @@
 #include <frc2/command/RunCommand.h>
 
 RobotContainer::RobotContainer() : 
-m_autonomousCommand(&m_subsystem), m_driveCommand(&m_driveSubsystem)
+m_autonomousCommand(&m_subsystem), 
+m_driveCommand(&m_driveSubsystem)
  {
   // Initialize all of your commands and subsystems here
 
@@ -29,7 +31,7 @@ m_autonomousCommand(&m_subsystem), m_driveCommand(&m_driveSubsystem)
   //prepare default drive command.
   m_driveSubsystem.SetDefaultCommand(frc2::RunCommand(
     [this] {
-      //TODO maybe not inline this.
+      //TODO implement this as an actual command instead of lambda
       bool fieldOrient = !m_rightJoystick.GetRawButton(3);
       double forward = m_leftJoystick.GetRawAxis(1);
       forward = PenguinUtil::smartDeadband(forward, -0.2, 0.16);
@@ -75,3 +77,8 @@ frc2::Command *RobotContainer::GetDriveCommand()
     // teleop drive command
     return &m_driveCommand;
 }
+
+// frc2::Command *RobotContainer::GetShootCommand() {
+   
+//    return &m_shootCommand;
+// }

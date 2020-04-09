@@ -15,6 +15,8 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include "frc/Joystick.h"
+#include "subsystems/ShooterSubsystem.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -29,7 +31,7 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
   frc2::Command* GetDriveCommand();
-
+  // frc2::Command* GetShootCommand();
 
   //joysticks
   frc::Joystick m_leftJoystick{0};
@@ -43,9 +45,11 @@ class RobotContainer {
   
   ExampleSubsystem m_subsystem;
   DriveSubsystem m_driveSubsystem;
+  
 
   ExampleCommand m_autonomousCommand;
   DriveCommand m_driveCommand;
+  //ShootCommand m_shootCommand;
   //chooser for autonomous
   frc::SendableChooser<frc2::Command*> m_chooser;
   //private methods.

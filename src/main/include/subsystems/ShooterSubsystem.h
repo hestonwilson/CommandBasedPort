@@ -14,11 +14,13 @@
 #include "frc/controller/SimpleMotorFeedforward.h"
 
 #include "units/units.h"
+#include <unordered_map>
 class ShooterSubsystem : public frc2::SubsystemBase {
   public:
 
   ShooterSubsystem(int shooterID, int beltID, int aimerID, int intakeID, frc::I2C::Port lidarPort);
   bool BallDetectedByLidar();
+  void Periodic();
 
   void Update();
   void PutDiagnostics();

@@ -12,7 +12,7 @@
 #include "frc/smartdashboard/SmartDashboard.h"
 #include "frc/Encoder.h"
 #include "frc/controller/SimpleMotorFeedforward.h"
-
+#include "Joystick.h"
 #include "units/units.h"
 #include <unordered_map>
 class ShooterSubsystem : public frc2::SubsystemBase {

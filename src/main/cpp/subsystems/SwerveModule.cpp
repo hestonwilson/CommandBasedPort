@@ -9,7 +9,7 @@
 #include <wpi/math>
 #include "frc/smartdashboard/SmartDashboard.h"
 #include "Constants.h"
-
+#include "Joystick.h"
 SwerveModule::SwerveModule(frc::Translation2d pos, int analogEncoderPort, units::radian_t analogEncoderOffset, int driveMotorCANID, int turnMotorCANID, SwerveModuleName moduleName)
   : m_driveMotor(driveMotorCANID, rev::CANSparkMax::MotorType::kBrushless), 
     m_turnMotor(turnMotorCANID, rev::CANSparkMax::MotorType::kBrushless),

@@ -34,10 +34,10 @@ class RobotContainer {
   // frc2::Command* GetShootCommand();
 
   //joysticks
-  frc::Joystick m_leftJoystick{0};
-  frc::Joystick m_rightJoystick{1};
-  frc::Joystick m_gamerJoystick{2};
-  frc::Joystick m_utilityJoystick{3};
+  // frc::Joystick m_leftJoystick{0};
+  // frc::Joystick m_rightJoystick{1};
+  // frc::Joystick m_gamerJoystick{2};
+  // frc::Joystick m_utilityJoystick{3};
   
 
  private:

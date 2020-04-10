@@ -1,7 +1,7 @@
 #include "subsystems/ShooterSubsystem.h"
 #include "Constants.h"
 #include "PenguinUtil.h"
-
+#include "Joystick.h"
 ShooterSubsystem::ShooterSubsystem(int shooterID, int beltID, int aimerID, int intakeID, frc::I2C::Port lidarPort) 
   : m_shooter{shooterID, rev::CANSparkMax::MotorType::kBrushless},
   m_belt{beltID},

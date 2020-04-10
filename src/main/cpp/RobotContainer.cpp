@@ -19,6 +19,7 @@
 #include <frc2/command/PIDCommand.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/RunCommand.h>
+#include "Joystick.h"
 
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem), 

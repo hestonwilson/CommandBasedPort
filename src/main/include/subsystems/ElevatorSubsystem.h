@@ -12,10 +12,7 @@ class Elevator : public frc2::ProfiledPIDSubsystem<units::meters> {
   units::meter_t elevatorPosition;
   units::meter_t GetMeasurement() override;
   void UseOutput(double output, frc::TrapezoidProfile<units::meters>::State setpoint) override;
-
-
-
-
+  
   private:
   /** elevator feedforward 
    *  gains will definitely not 

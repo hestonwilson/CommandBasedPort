@@ -22,6 +22,10 @@ m_elevatorEncoder(std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR
 
 
 }
+void Elevator::Periodic() {
+  std::cout << "2551"; //had to override
+
+}
 
 void Elevator::UseOutput(double output, State setpoint) {
   units::volt_t feedforward = 

@@ -15,7 +15,9 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include "frc/Joystick.h"
-#include "subsystems/ShooterSubsystem.h"
+#include "subsystems/ElevatorSubsystem.h"
+
+
 
 
 /**
@@ -33,19 +35,21 @@ class RobotContainer {
   frc2::Command* GetDriveCommand();
   // frc2::Command* GetShootCommand();
 
-  //joysticks
-  // frc::Joystick m_leftJoystick{0};
-  // frc::Joystick m_rightJoystick{1};
-  // frc::Joystick m_gamerJoystick{2};
-  // frc::Joystick m_utilityJoystick{3};
+  
   
 
  private:
   // The robot's subsystems and commands are defined here...
+
   
   ExampleSubsystem m_subsystem;
   DriveSubsystem m_driveSubsystem;
-  
+  elevator m_elevatorSubsystem;
+
+  frc::Joystick m_leftJoystick{0};
+  frc::Joystick m_rightJoystick{1};
+  frc::Joystick m_gamerJoystick{2};
+  frc::Joystick m_utilityJoystick{3};
 
   ExampleCommand m_autonomousCommand;
   DriveCommand m_driveCommand;

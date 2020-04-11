@@ -10,74 +10,74 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include "frc/smartdashboard/SmartDashboard.h"
-#include "frc/Encoder.h"
-#include "frc/controller/SimpleMotorFeedforward.h"
-#include "Joystick.h"
-#include "units/units.h"
-#include <unordered_map>
-class ShooterSubsystem : public frc2::SubsystemBase {
-  public:
+// #include "frc/Encoder.h"
+// #include "frc/controller/SimpleMotorFeedforward.h"
 
-  ShooterSubsystem(int shooterID, int beltID, int aimerID, int intakeID, frc::I2C::Port lidarPort);
-  bool BallDetectedByLidar();
-  void Periodic();
+// #include "units/units.h"
+// #include <unordered_map>
+// class ShooterSubsystem : public frc2::SubsystemBase {
+//   public:
 
-  void Update();
-  void PutDiagnostics();
-  void ConfigESCs();
+//   ShooterSubsystem(int shooterID, int beltID, int aimerID, int intakeID, frc::I2C::Port lidarPort);
+//   bool BallDetectedByLidar();
+//   void Periodic();
 
-  void Intake(bool run);
-  void Shoot(bool run);
-  void RunManual();
-  void DontRun();
+//   void Update();
+//   void PutDiagnostics();
+//   void ConfigESCs();
 
-  void EnterManualMode();
-  bool InManualMode();
+//   void Intake(bool run);
+//   void Shoot(bool run);
+//   void RunManual();
+//   void DontRun();
 
-  void RunShooterIf(bool run);
-  void RunShooterWithWPIFF(bool run);
-  void RunIntakeIf(bool run);
-  void RunBeltIf(bool run);
+//   void EnterManualMode();
+//   bool InManualMode();
 
-  rev::CANSparkMax m_shooter; /** +: shoots the ball */
-  WPI_TalonSRX m_belt; /** +: moves the ball toward the shooter */
-  WPI_TalonSRX m_aimer; /** +: moves the hood up (lowering shot) */
-  WPI_TalonSRX m_intake; /** +: picks up the ball */
+//   void RunShooterIf(bool run);
+//   void RunShooterWithWPIFF(bool run);
+//   void RunIntakeIf(bool run);
+//   void RunBeltIf(bool run);
 
- private:
+//   rev::CANSparkMax m_shooter; /** +: shoots the ball */
+//   WPI_TalonSRX m_belt; /** +: moves the ball toward the shooter */
+//   WPI_TalonSRX m_aimer; /** +: moves the hood up (lowering shot) */
+//   WPI_TalonSRX m_intake; /** +: picks up the ball */
 
-  enum Mode {
-    INTAKING, SHOOTING, MANUAL
-  } m_mode = SHOOTING; // default mode to shooting because that's the first action in a match
+//  private:
 
-  const std::unordered_map<Mode, std::string> MODE_STRINGS = {
-    {Mode::INTAKING, "Intaking"}, {Mode::SHOOTING, "Shooting"}, {Mode::MANUAL, "Manual"}
-  };
+//   enum Mode {
+//     INTAKING, SHOOTING, MANUAL
+//   } m_mode = SHOOTING; // default mode to shooting because that's the first action in a match
 
-  Lidar m_ballDetector;
+//   const std::unordered_map<Mode, std::string> MODE_STRINGS = {
+//     {Mode::INTAKING, "Intaking"}, {Mode::SHOOTING, "Shooting"}, {Mode::MANUAL, "Manual"}
+//   };
 
-  rev::CANEncoder m_shooterEncoder = m_shooter.GetEncoder();
-  rev::CANPIDController m_shooterPID = m_shooter.GetPIDController();
+//   Lidar m_ballDetector;
 
-  frc::SimpleMotorFeedforward<units::turns> m_shooterFF{PenguinConstants::ShooterSystem::Characterization::kS, PenguinConstants::ShooterSystem::Characterization::kV, PenguinConstants::ShooterSystem::Characterization::kA};
+//   rev::CANEncoder m_shooterEncoder = m_shooter.GetEncoder();
+//   rev::CANPIDController m_shooterPID = m_shooter.GetPIDController();
 
-  bool m_ballCurrentlyPassingInFrontOfLidar;
-  units::inch_t m_currentLidarDistance; // temp, probably. Would want to move into update and make `const` eventually, but need global to reference in `PutDiagnostics()`.
+//   frc::SimpleMotorFeedforward<units::turns> m_shooterFF{PenguinConstants::ShooterSystem::Characterization::kS, PenguinConstants::ShooterSystem::Characterization::kV, PenguinConstants::ShooterSystem::Characterization::kA};
 
-  /** How many balls are currently being carried by the robot. Hard-coded as 3 to start. */
-  public: // TODO: make this private (when counting works reliably)
-  int m_ballCount = 3;
-  private:
+//   bool m_ballCurrentlyPassingInFrontOfLidar;
+//   units::inch_t m_currentLidarDistance; // temp, probably. Would want to move into update and make `const` eventually, but need global to reference in `PutDiagnostics()`.
 
-  /** RPM of NEOs operating at maximum efficiency/max power output.
-   * From here: https://motors.vex.com/vexpro-motors/cim-motor.
-   */
-  static constexpr units::revolutions_per_minute_t SHOOTING_SPEED = units::revolutions_per_minute_t(2940);
-  bool ShooterReadyToShoot(units::revolutions_per_minute_t atSpeed, double withinPercent);
+//   /** How many balls are currently being carried by the robot. Hard-coded as 3 to start. */
+//   public: // TODO: make this private (when counting works reliably)
+//   int m_ballCount = 3;
+//   private:
 
-  void UpdateBallCount();
+//   /** RPM of NEOs operating at maximum efficiency/max power output.
+//    * From here: https://motors.vex.com/vexpro-motors/cim-motor.
+//    */
+//   static constexpr units::revolutions_per_minute_t SHOOTING_SPEED = units::revolutions_per_minute_t(2940);
+//   bool ShooterReadyToShoot(units::revolutions_per_minute_t atSpeed, double withinPercent);
 
-  units::meter_t dist_away_x;
-  units::meter_t dist_away_y;
-};
+//   void UpdateBallCount();
+
+//   units::meter_t dist_away_x;
+//   units::meter_t dist_away_y;
+// };
 

@@ -19,7 +19,8 @@
 #include <frc2/command/PIDCommand.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/RunCommand.h>
-#include "Joystick.h"
+
+
 
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem), 
@@ -67,7 +68,13 @@ m_driveCommand(&m_driveSubsystem)
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+  //move elevator up.
+  frc2::JoystickButton(&m_leftJoystick, 2)
+    .WhenPressed([this] {m_elevator->SetGoal(2_m)}, {&m_elevator});
 }
+//move elevator down
+  frc2::JoystickButton(&m_leftJoystick, 3)
+    .WhenPressed([this] {m_elevator->SetGoal(0_m)}, {&m_elevator});
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous

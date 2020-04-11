@@ -87,6 +87,16 @@ namespace I2C {
 } //I2C namespace
 
 namespace ElevatorControl { //placeholders TODO reals
+namespace FeedforwardGains {
+  //these constants are placeholders
+  using kv_unit = units::compound_unit<units::volts, units::inverse<Velocity>>;
+  using ka_unit = units::compound_unit<units::volts, units::inverse<Acceleration>>;
+  constexpr units::volt_t kS = 1
+  constexpr units::volt_t kG = 1
+
+  constexpr units::unit_t<kv_unit> kV = 1
+  constexpr units::unit_t<ka_unit> kA = 1
+}
   constexpr units::meters_per_second_t MAX_VEL = 1.75_mps;
   constexpr units::meters_per_second_squared_t MAX_ACCEL = 0.75_mps_sq;
 

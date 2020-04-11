@@ -1,39 +1,34 @@
-#include "Constants.h"
 #include "subsystems/ElevatorSubsystem.h"
-#include "ctre/Phoenix.h"
-#include "Joystick.h"
+#include "Constants.h"
 #include "frc/Encoder.h"
+using state = frc::TrapezoidProfile<units::meters>::State;
 
-ElevatorSubsystem::ElevatorSubsystem() {
-  m_elevatorEncoder->Reset();
+Elevator::Elevator() :
+frc2::ProfiledPIDSubsystem<units::meters>(frc::ProfiledPIDController<units::meters>(PenguinConstants::ElevatorControl::P, 0, 0, {PenguinConstants::ElevatorControl::MAX_VEL, PenguinConstants::ElevatorControl::MAX_ACCEL}),
+m_feedForward(PenguinConstants::ElevatorControl::FeedforwardGains::kS,PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV, PenguinConstants::ElevatorControl::FeedforwardGains::kA ),
+m_elevator(std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER)),
+m_elevatorSlave(std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE)),
+m_elevatorEncoder(std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR_ENCODER_A, PenguinConstants::DIO::ELEVATOR_ENCODER_B))
+{
+  
+  //m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
+  //m_elevatorSlave = std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE);
+  //m_elevatorEncoder = std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR_ENCODER_A, PenguinConstants::DIO::ELEVATOR_ENCODER_B);
+
+  //this is not empirical yet
   m_elevatorEncoder->SetDistancePerPulse(2 * PenguinConstants::MathConstants::PI * 3 * 4 / 8192);
-  ConfigureMotorControllers();
-}
-void ElevatorSubsystem::Periodic() {
-    elevatorPosition = units::meter_t(m_elevatorEncoder->GetDistance());
-    m_elevator->Set(m_controller.Calculate(units::meter_t(m_elevatorEncoder->GetDistance()))); 
-}
+  //don't know if this will work. This is supposed to start elevator at the bottom.
+  SetGoal(0_m);
 
 
-void ElevatorSubsystem::RunElevator() {
-  if (m_leftJoystick.GetRawButtonPressed(2)) {
-      m_controller.SetGoal(2_m);
-    } else if (m_leftJoystick.GetRawButtonPressed(3)) {
-      m_controller.SetGoal(0_m);
-    }
 }
 
-
-void ElevatorSubsystem::ConfigureMotorControllers() {
-  m_elevator->ConfigFactoryDefault();
-  m_elevatorSlave->ConfigFactoryDefault();
-
-  //always strive to be a leader, not a follower.
-  m_elevatorSlave->Set(ControlMode::Follower, PenguinConstants::CAN::ELEVATOR_MASTER);
-  m_elevator->SetInverted(true);
-
-  m_elevator->ConfigContinuousCurrentLimit(39);
-  m_elevator->ConfigPeakCurrentLimit(0);
-  m_elevator->SetNeutralMode(NeutralMode::Brake);
-
+void Elevator::UseOutput(double output, State setpoint) {
+  units::volt_t feedforward = 
+  m_feedforward.Calculate(setpoint.position, setpoint.velocity);
+  //add the feedforward to the pid output to get the motor output.
+  m_elevator->SetVoltage(units::volts_t(output) + feedforward);
+}
+units::meter_t Elevator::GetMeasurement() {
+return units::meter_t(m_elevatorEncoder->GetDistance());
 }

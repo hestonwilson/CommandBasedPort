@@ -23,7 +23,7 @@ m_elevatorEncoder(std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR
 
 }
 void Elevator::Periodic() {
-  std::cout << "2551"; //had to override
+  elevatorPosition = (m_elevatorEncoder->GetDistance());
 
 }
 

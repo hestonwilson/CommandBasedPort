@@ -7,12 +7,13 @@
 #include "frc/I2C.h"
 
 
+
 namespace PenguinUtil {
   inline double linearMap(double n, double start1, double stop1, double start2, double stop2) {
     // Credit to the Processing Foundation and p5.js: https://github.com/processing/p5.js/blob/86d6b67707965526ce11cf893e26be5d53a1ad4c/src/math/calculation.js#L461
     return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
   }
-
+  
   inline double deadband(double input, double deadband = 0.05) {
     if (fabs(input) < deadband) {
       return 0;

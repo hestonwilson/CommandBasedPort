@@ -70,11 +70,11 @@ void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
   //move elevator up.
   frc2::JoystickButton(&m_leftJoystick, 2)
-    .WhenPressed([this] {m_elevator->SetGoal(2_m)}, {&m_elevator});
+    .WhenPressed([this] {m_elevatorSubsystem->SetGoal(2_m);}, {&m_elevatorSubsystem});
 }
 //move elevator down
   frc2::JoystickButton(&m_leftJoystick, 3)
-    .WhenPressed([this] {m_elevator->SetGoal(0_m)}, {&m_elevator});
+    .WhenPressed([this] {m_elevatorSubsystem->SetGoal(0_m);}, {&m_elevatorSubsystem});
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous

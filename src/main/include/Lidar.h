@@ -73,6 +73,7 @@ private:
 		//printf("Status at line %d %0x, bit0=%0x\n", __LINE__, Status[0], Status[0] & (unsigned char)0x01);
 		return (Status[0] & (unsigned char)0x01); // bit 0 is LIDAR Lite v2 busy bit
 	};
+  
 
   unsigned int AquireDistance(/*Timer m_timer*/) {      
     unsigned char distance[Lidar::READ_2_REGISTERS];

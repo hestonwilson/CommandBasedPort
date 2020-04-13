@@ -1,7 +1,7 @@
 #pragma once
-#include "frc2/command/SubsystemBase"
+#include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
-#include "crte/Phoenix.h"
+#include "ctre/Phoenix.h"
 #include "Lidar.h"
 class IntakeSubsystem : public frc2::SubsystemBase {
   IntakeSubsystem(int intakeID, frc::I2C::lidarPort);
@@ -11,9 +11,9 @@ class IntakeSubsystem : public frc2::SubsystemBase {
   void UpdateBallCount();
   void RunIntake();
   bool BallDetectedByLidar();
-  
+  void Stop();
   private:
-  m_ballCurrentlyPassingInFrontOfLidar;
+  bool m_ballCurrentlyPassingInFrontOfLidar;
   units::inch_t m_currentLidarDistance;
   Lidar m_ballDetector;
 };

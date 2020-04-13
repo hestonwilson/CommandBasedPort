@@ -36,6 +36,9 @@ void IntakeSubsystem::UpdateBallCount() {
     }
   }
 }
-bool ShooterSystem::BallDetectedByLidar() {
+bool IntakeSubsystem::BallDetectedByLidar() {
   return m_currentLidarDistance < PenguinConstants::ShooterSystem::LIDAR_NORMAL_DISTANCE * 0.8;
+}
+void IntakeSubsystem::Stop() {
+  m_intakeMotor.Set(0);
 }

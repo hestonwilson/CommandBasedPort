@@ -1,7 +1,7 @@
 #pragma once
-#include "frc2/command/SubsystemBase"
+#include "frc2/command/SubsystemBase.h"
 #include "Constants.h"
-#include "crte/Phoenix.h"
+#include "ctre/Phoenix.h"
 #include "Lidar.h"
 #include "frc/Encoder.h"
 #include <units/units.h>
@@ -13,6 +13,7 @@ void UpdateBallCount();
 bool BallDetectedByLidar();
 void RunBelt(double percentDampen);
 void PutDiagnostics();
+void Stop();
 units::inch_t m_currentLidarDistance; // temp, probably. Would want to move into update and make `const` eventually, but need global to reference in `PutDiagnostics()`.
 public:
 bool m_ballCurrentlyPassingInFrontOfLidar;

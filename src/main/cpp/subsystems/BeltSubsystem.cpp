@@ -22,6 +22,9 @@ void Periodic() {
 void BeltSubsystem::RunBelt(double percentDampen) {
   m_beltMotor.Set(1 * percentDampen);
 }
+void BeltSubsystem::Stop() {
+  m_beltMotor.Set(0);
+}
 void BeltSubystem::PutDiagnostics() {
   using SD = frc::SmartDashboard;
   SD::PutBoolean("ball in front of lidar", m_ballCurrentlyPassingInFrontOfLidar);
@@ -42,6 +45,6 @@ void BeltSubsystem::UpdateBallCount() {
     }
   }
 }
-bool ShooterSystem::BallDetectedByLidar() {
+bool BeltSubsystem::BallDetectedByLidar() {
   return m_currentLidarDistance < PenguinConstants::ShooterSystem::LIDAR_NORMAL_DISTANCE * 0.8;
 }

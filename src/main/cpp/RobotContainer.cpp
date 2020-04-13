@@ -7,7 +7,6 @@
 
 #include "RobotContainer.h"
 #include "Constants.h"
-#include "subsystems/DriveSubsystem.h"
 #include "PenguinUtil.h"
 #include "subsystems/ShooterSubsystem.h"
 
@@ -15,9 +14,9 @@
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/Command.h>
-#include <frc2/command/InstantCommand.h>
-#include <frc2/command/PIDCommand.h>
-#include <frc2/command/ParallelRaceGroup.h>
+
+
+
 #include <frc2/command/RunCommand.h>
 
 
@@ -25,6 +24,7 @@
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem), 
 m_driveCommand(&m_driveSubsystem)
+m_beltCommand(&m_beltSubsystem)
  {
   // Initialize all of your commands and subsystems here
 
@@ -70,23 +70,20 @@ void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
   //move elevator up.
   frc2::JoystickButton(&m_leftJoystick, 2)
-    .WhenPressed([this] {m_elevatorSubsystem->SetGoal(2_m);}, {&m_elevatorSubsystem});
-}
-//move elevator down
+    .WhenPressed([this] {m_elevatorSubsystem.SetGoal(2_m);}, {&m_elevatorSubsystem});
+    //move elevator down
   frc2::JoystickButton(&m_leftJoystick, 3)
-    .WhenPressed([this] {m_elevatorSubsystem->SetGoal(0_m);}, {&m_elevatorSubsystem});
+    .WhenPressed([this] {m_elevatorSubsystem.SetGoal(0_m);}, {&m_elevatorSubsystem});
+  
+
+  RunIntakeButton.WhileHeld(RunIntakeCommand* intakeCommand);
+
+}
+
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return &m_autonomousCommand;
 }
-frc2::Command *RobotContainer::GetDriveCommand()
-{
-    // teleop drive command
-    return &m_driveCommand;
-}
 
-// frc2::Command *RobotContainer::GetShootCommand() {
-   
-//    return &m_shootCommand;
-// }
+

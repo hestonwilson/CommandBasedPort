@@ -1,13 +1,14 @@
 #pragma once
-#include "frc2/command/SubsystemBase"
+#include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"
 #include "rev/CANEncoder.h"
 #include "rev/CANPIDController.h"
 #include <units/units.h>
-#include "frc/controller/SimpleMotorFeedforward.h"
+#include <frc/controller/SimpleMotorFeedforward.h>
 #include "PenguinUtil.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 /** Originally in the  team 2551 2020 code
  *  the shooter subsystem encapsulated the belt,intake
  * and the shooter/aimer. Now the shooter subsystem is split
@@ -18,9 +19,11 @@
 class ShooterSubsystem : public frc2::SubsystemBase {
 ShooterSubsystem(int shooterID, int aimerID);
 void Periodic() override;
+//TODO: maybe make aimer its own subsystem. 
 void Shoot();
+void Stop();
 void PutDiagnostics();
-
+void RunShooterWithFeedForward();
 rev::CANSparkMax m_shooter;
 WPI_TalonSRX m_aimer;
 rev::CANPIDController m_shooterPID = m_shooter.GetPIDController();

@@ -91,8 +91,8 @@ namespace FeedforwardGains {
   //these constants are placeholders
   using kv_unit = units::compound_unit<units::volts, units::inverse<Velocity>>;
   using ka_unit = units::compound_unit<units::volts, units::inverse<Acceleration>>;
-  constexpr units::volt_t kS = 1
-  constexpr units::volt_t kG = 1
+  constexpr units::volt_t kS = 1;
+  constexpr units::volt_t kG = 1;
 
   constexpr units::unit_t<kv_unit> kV = 1
   constexpr units::unit_t<ka_unit> kA = 1
@@ -134,6 +134,12 @@ namespace ShooterSystem {
 } //ShooterSystem namespace
 
 namespace Joysticks {
+  namespace CommandJoystickButtons {
+    constexpr int ELEVATOR_UP_BUTTON = 2;
+    constexpr int ELEVATOR_DOWN_BUTTON = 3;
+    constexpr int SPIN_UP_BUTTON = 1;
+    constexpr int RUN_INTAKE_BUTTON = 2; 
+  }
     namespace Gamer {
         namespace Buttons {
           constexpr int A = 1;

@@ -14,9 +14,9 @@ class ShootSequenceCommand : public frc2::CommandHelper<frc2::SequentialCommandG
    * 
 */
   explicit ShootSequenceCommand(IntakeSubsystem* intake, BeltSubsystem* belt, ShooterSubsystem* shooter);
-  void Initialize() override;
   void Execute() override;
-  
+  //not overriding IsFinished because it will end when the button is not held.
+  void End(bool interrupted) override;
   
   
 }

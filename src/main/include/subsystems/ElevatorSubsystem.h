@@ -3,11 +3,11 @@
 #include <units/units.h>
 #include "ctre/Phoenix.h"
 #include "Constants.h"
-#include "frc/Encoder.h"
-#include "frc/controller/ElevatorFeedforward.h"
+#include <frc/Encoder.h>
+#include <frc/controller/ElevatorFeedforward.h>
 
-class Elevator : public frc2::ProfiledPIDSubsystem<units::meters> {
-  Elevator();
+class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
+  ElevatorSubsystem();
   void Periodic() override;
   units::meter_t elevatorPosition;
   units::meter_t GetMeasurement() override;

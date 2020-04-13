@@ -14,7 +14,7 @@ explicit BeltCommand(BeltSubsystem* subsystem);
 void Initialize() override;
 void Execute() override;
 void IsFinished() override;
-void End() override;
+void End(bool interrupted) override;
 private:
 BeltSubsystem m_belt;
 };

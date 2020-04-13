@@ -3,7 +3,7 @@
 #include "frc/Encoder.h"
 using state = frc::TrapezoidProfile<units::meters>::State;
 
-Elevator::Elevator() :
+ElevatorSubsystem::ElevatorSubsystem() :
 frc2::ProfiledPIDSubsystem<units::meters>(frc::ProfiledPIDController<units::meters>(PenguinConstants::ElevatorControl::P, 0, 0, {PenguinConstants::ElevatorControl::MAX_VEL, PenguinConstants::ElevatorControl::MAX_ACCEL}),
 m_feedForward(PenguinConstants::ElevatorControl::FeedforwardGains::kS,PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV, PenguinConstants::ElevatorControl::FeedforwardGains::kA ),
 m_elevator(std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER)),
@@ -22,17 +22,17 @@ m_elevatorEncoder(std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR
 
 
 }
-void Elevator::Periodic() {
+void ElevatorSubsystem::Periodic() {
   elevatorPosition = (m_elevatorEncoder->GetDistance());
 
 }
 
-void Elevator::UseOutput(double output, State setpoint) {
+void ElevatorSubsystem::UseOutput(double output, State setpoint) {
   units::volt_t feedforward = 
   m_feedforward.Calculate(setpoint.position, setpoint.velocity);
   //add the feedforward to the pid output to get the motor output.
   m_elevator->SetVoltage(units::volts_t(output) + feedforward);
 }
-units::meter_t Elevator::GetMeasurement() {
+units::meter_t ElevatorSubsystem::GetMeasurement() {
 return units::meter_t(m_elevatorEncoder->GetDistance());
 }

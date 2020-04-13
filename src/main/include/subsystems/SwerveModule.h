@@ -37,7 +37,6 @@ class SwerveModule {
   void PutSwerveModuleState(std::string, frc::SwerveModuleState&) const;
   void PutSwerveModuleState(std::string, units::degree_t, units::meters_per_second_t) const;
   void PutSwerveModuleState(std::string, double, double) const;
-
   void PutDiagnostics() const;
   void ReadSensors();
 

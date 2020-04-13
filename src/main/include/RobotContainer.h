@@ -56,7 +56,7 @@ class RobotContainer {
   
   ExampleSubsystem m_subsystem;
   DriveSubsystem m_driveSubsystem;
-  Elevator m_elevatorSubsystem;
+  ElevatorSubsystem m_elevatorSubsystem;
   BeltSubsystem m_beltSubsystem;
   IntakeSubsystem m_intakeSubsystem;
   ShooterSubsystem m_shooterSubsystem;

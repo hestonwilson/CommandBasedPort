@@ -1,4 +1,9 @@
 #include "commands/SpinUpCommand.h"
+/** This command is intended to be used in the
+ * ShootSequenceCommand. Due to this it does not override the 
+ * end method and should not be used on its own, lest the shooter
+ * spin without stopping.
+ */
 
 explicit SpinUpCommand(ShooterSubsystem* subsystem) 
 : m_shooter{subsystem} {
@@ -20,5 +25,5 @@ return false;
 }
 void SpinUpCommand::End(bool interrupted) {
 //do nothing here because the sequential command group needs
-//to continue on to the next command.
+// shooter to keep spinning. 
 }

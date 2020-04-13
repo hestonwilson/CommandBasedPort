@@ -41,7 +41,13 @@ namespace MathConstants {
    const frc::Rotation2d TWO_PI_ROT = frc::Rotation2d(TWO_PI_RAD);
 
 }//MathConstants namespace
-
+namespace DrivetrainAutonomous {
+  //TODO these are placeholders.
+constexpr auto ks = 1_V;
+constexpr auto kv = 0.8 * 1_V * 1_s / 1_m;
+constexpr auto ka = 0.15 * 1_V * 1_s * 1_s / 1_m;
+constexpr double
+}
 namespace CAN {
     namespace SwerveConstants {
       constexpr int FL_DRIVE = 6;

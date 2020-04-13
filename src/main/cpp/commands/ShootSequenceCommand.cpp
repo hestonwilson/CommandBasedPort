@@ -6,4 +6,10 @@ ShootSequenceCommand::ShootSequenceCommand(IntakeSubsystem* intake, BeltSubsyste
         BeltCommand(belt)
     );
 
+   
+
 }
+ void End(bool interrupted) {
+     belt->Stop();
+     shooter->Stop();
+ }

@@ -12,6 +12,7 @@
 #include <units/units.h>
 #include "frc/geometry/Rotation2d.h"
 #include "frc/I2C.h"
+#include <frc/trajectory/TrapezoidProfile.h>
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -46,7 +47,22 @@ namespace DrivetrainAutonomous {
 constexpr auto ks = 1_V;
 constexpr auto kv = 0.8 * 1_V * 1_s / 1_m;
 constexpr auto ka = 0.15 * 1_V * 1_s * 1_s / 1_m;
-constexpr double
+using radians_per_second_squared_t = units::compound_unit<units::radians,
+                         units::inverse<units::squared<units::second>>>;
+
+constexpr units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; //TODO make accurate
+constexpr units::meters_per_second_squared_t K_MAX_ACCELERATION = units::meters_per_second_squared_t(2);
+constexpr units::radians_per_second_t K_MAX_ANGULAR_VELOCITY = units::radians_per_second_t(2.5);
+constexpr auto K_MAX_ANGULAR_ACCELERATION = units::units_t<radians_per_second_squared_t>(3.142); // TODO make accurate
+
+//TODO get some holonomic following PID constants that are empirical
+constexpr double kPForwardController = 0.5;
+constexpr double kPStrafeController = 0.5;
+constexpr double kPRotationController = 0.5;
+
+//motion profile for rotation controller
+constexpr frc::TrapezoidProfile<units::radians>::Constraints kRotationControllerConstraints{K_MAX_ANGULAR_VELOCITY, 
+                                                                                            K_MAX_ANGULAR_ACCELERATION};
 }
 namespace CAN {
     namespace SwerveConstants {

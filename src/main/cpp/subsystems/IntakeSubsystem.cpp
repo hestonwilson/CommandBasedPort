@@ -1,12 +1,12 @@
 #include "subsystems/IntakeSubsystem.h"
 #include "frc/smartdashboard/SmartDashboard.h"
 
-IntakeSubsystem::IntakeSubsystem(int intakeID, int lidarPort)
+IntakeSubsystem::IntakeSubsystem(int intakeID, frc::I2C::Port lidarPort)
 :m_intakeMotor(intakeID),
 m_ballDetector(lidarPort) {
   m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
   m_intakeMotor.ConfigFactoryDefault();
-  m_intakeMotor.setSmartCurrentLimit(40);
+  // m_intakeMotor.SetSmartCurrentLimit(40);
   
 }
 void IntakeSubsystem::Periodic() {

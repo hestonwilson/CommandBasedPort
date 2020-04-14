@@ -7,7 +7,6 @@
 
 
 #include "subsystems/DriveSubsystem.h"
-#include "Constants.h"
 #include "subsystems/SwerveModule.h" 
 #include "frc/Joystick.h"
 
@@ -28,6 +27,16 @@ void DriveSubsystem::Periodic() {
     GetAngleAsRot(),
     m_frontLeftModule.GetState(), m_frontRightModule.GetState(), 
     m_backLeftModule.GetState(), m_backRightModule.GetState());
+  
+}
+
+void DriveSubsystem::SetModuleStates(std::array<frc::SwerveModuleState, 4> desiredStates) {
+  m_kinematics.NormalizeWheelSpeeds(&desiredStates, 
+                                    PenguinConstants::DrivetrainAutonomous::K_MAX_VELOCITY);
+  m_frontLeftModule.SetDesiredState(desiredStates[0]);
+  m_backLeftModule.SetDesiredState(desiredStates[1]);
+  m_frontRightModule.SetDesiredState(desiredStates[2]);
+  m_backRightModule.SetDesiredState(desiredStates[3]);  
 }
 void DriveSubsystem::Drive(units::meters_per_second_t fwd, units::meters_per_second_t str, units::radians_per_second_t rot, bool fieldOriented, frc::Translation2d centerOfRotation) {
   // rot *= 2. / HYPOT; // TODO: see if this improves things
@@ -76,9 +85,9 @@ void DriveSubsystem::Drive(double fwd, double str, double rot, bool fieldOriente
   // }
 
   Drive(
-    fwd * K_MAX_VELOCITY,
-    str * K_MAX_VELOCITY,
-    rot * K_MAX_ANGULAR_VELOCITY,
+    fwd * PenguinConstants::DrivetrainAutonomous::K_MAX_VELOCITY,
+    str * PenguinConstants::DrivetrainAutonomous::K_MAX_VELOCITY,
+    rot * PenguinConstants::DrivetrainAutonomous::K_MAX_ANGULAR_VELOCITY,
     fieldOriented,
     centerOfRotation
   );
@@ -97,7 +106,7 @@ void DriveSubsystem::PutDiagnostics() {
   SD::PutNumber("x location", m_location.Translation().X().to<double>());
   SD::PutNumber("y location", m_location.Translation().Y().to<double>());
 }
-DriveSubsystem::GetPose() {return m_odometry.GetPose();}
+frc::Pose2d DriveSubsystem::GetPose() {return m_odometry.GetPose();}
 
 void DriveSubsystem::Update() {
   // m_backLeftModule.SDS_UpdateState();

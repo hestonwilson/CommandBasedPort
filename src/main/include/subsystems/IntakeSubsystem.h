@@ -3,8 +3,9 @@
 #include "Constants.h"
 #include "ctre/Phoenix.h"
 #include "Lidar.h"
+
 class IntakeSubsystem : public frc2::SubsystemBase {
-  IntakeSubsystem(int intakeID, frc::I2C::lidarPort);
+  IntakeSubsystem(int intakeID, frc::I2C::port lidarPort);
   WPI_TalonSRX m_intakeMotor;
   int m_ballCount;
   void Periodic() override;

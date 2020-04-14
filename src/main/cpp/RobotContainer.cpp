@@ -25,9 +25,8 @@
 
 
 RobotContainer::RobotContainer() : 
-m_autonomousCommand(&m_subsystem), 
-m_driveCommand(&m_driveSubsystem)
-m_beltCommand(&m_beltSubsystem)
+m_autonomousCommand(&m_driveSubsystem, &m_elevatorSubsystem, &m_shooterSubsystem, &m_beltSubsystem, &m_intakeSubsystem, m_subsystem)
+
  {
   // Initialize all of your commands and subsystems here
 
@@ -79,14 +78,63 @@ void RobotContainer::ConfigureButtonBindings() {
     .WhenPressed([this] {m_elevatorSubsystem.SetGoal(0_m);}, {&m_elevatorSubsystem});
   
 
-  RunIntakeButton.WhileHeld(RunIntakeCommand* intakeCommand);
+  RunIntakeButton.WhileHeld(RunIntakeCommand(&m_intakeSubsystem));
 
 }
 
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return &m_autonomousCommand;
+  //set up config for trajectory.
+  frc::TrajectoryConfig config(PenguinConstants::DrivetrainAutonomous::K_MAX_VELOCITY, 
+                               PenguinConstants::DrivetrainAutonomous::K_MAX_ACCELERATION);
+  //make sure max velocity is obeyed.
+  config.SetKinematics(m_driveSubsystem.m_kinematics);
+  
+  auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      // Start at the origin facing the +X direction
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
+      // Pass through these two interior waypoints, making an 's' curve path
+      {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
+      // End 3 meters straight ahead of where we started, facing forward
+      frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
+      // Pass the config
+      config);
+      /** SwerveControllerCommand creates a swerve controller command
+       * object that is basically an all in one solution
+       * for trajectory following with swerve drive.
+       * @param trajectory the trajectory to follow
+       * @param function object that returns a pose 2d
+       * @param m_kinematics the kinematics for the drivetrain
+       * @param xPIDController pid controller for x
+       * @param yPIDController the pid controller for y
+       * @param ProfiledPIDController pid controller for rotation
+       * @param swervemodulestates the swervemodulestate objects
+       * @param subsystem the subsystem that will be used.
+       */
+
+      frc2::SwerveControllerCommand<4> swerveControllerCommand(
+      exampleTrajectory, [this]() 
+      { return m_drive.GetPose(); },
+      m_driveSubsystem.m_kinematics,
+      frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPForwardController, 0, 0),
+      frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPStrafeController, 0, 0),
+      frc::ProfiledPIDController<units::radians>(
+        PenguinConstants::DrivetrainAutonomous::kPRotationController, 0, 0,
+        PenguinConstants::DrivetrainAutonomous::kRotationControllerConstraints),
+        [this] (auto moduleStates) {m_driveSubsystem.SetModuleStates(moduleStates);}
+     {&m_driveSubsystem});
+     
+//      return new frc2::SequentialCommandGroup(
+//       std::move(swerveControllerCommand), std::move(swerveControllerCommand),
+//       frc2::InstantCommand(
+//           [this]() {
+//             m_drive.Drive(units::meters_per_second_t(0),
+//                           units::meters_per_second_t(0),
+//                           units::radians_per_second_t(0), false);
+//           },
+//           {}));
+// }
+
 }
 
 

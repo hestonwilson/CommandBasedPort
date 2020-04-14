@@ -7,6 +7,7 @@
 #include <frc/kinematics/SwerveDriveKinematics.h>
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+
 #include "Constants.h"
 #include "PenguinUtil.h"
 #include "SwerveModule.h"
@@ -24,16 +25,17 @@ public:
   void UpdateModuleEncoderOFfsetAngles();
   void ResetGyroscope();
   frc::Pose2d GetPose();
-  
+
+  void SetModuleStates(std::array<frc::SwerveModuleState, 4> desiredStates);
   units::degree_t GetAngle() const;
   frc::Pose2d m_location;
   void PutDiagnostics();
   void ResetOdometry(frc::Pose2d pose);
   
   //drive constants
-  const units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; // TODO: make accurate. flag: CONTROL_VELOCITY_DIRECTLY
-  const units::meters_per_second_squared_t K_MAX_ACCELERATION = units::meters_per_second_squared_t(2); // TODO: make accurate
-  const units::radians_per_second_t K_MAX_ANGULAR_VELOCITY = units::radians_per_second_t(2.5);
+  // const units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; // TODO: make accurate. flag: CONTROL_VELOCITY_DIRECTLY
+  // const units::meters_per_second_squared_t K_MAX_ACCELERATION = units::meters_per_second_squared_t(2); // TODO: make accurate
+  // const units::radians_per_second_t K_MAX_ANGULAR_VELOCITY = units::radians_per_second_t(2.5);
 
   const units::inch_t TRACKWIDTH = units::inch_t(20.75);
   const units::inch_t WHEELBASE = units::inch_t(25.5);

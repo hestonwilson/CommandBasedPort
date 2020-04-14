@@ -23,6 +23,7 @@ m_odometry{m_kinematics, PenguinConstants::MathConstants::ZERO_ROT, m_location} 
   printf("front left angle offset: %f", BACK_RIGHT_ANGLE_OFFSET.to<double>());
 }
 void DriveSubsystem::Periodic() {
+
   m_odometry.Update(
     GetAngleAsRot(),
     m_frontLeftModule.GetState(), m_frontRightModule.GetState(), 
@@ -48,6 +49,11 @@ void DriveSubsystem::Drive(units::meters_per_second_t fwd, units::meters_per_sec
   m_frontLeftModule.SetDesiredState(fl);
   m_frontRightModule.SetDesiredState(fr);
 }
+void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
+  m_odometry.ResetPosition(pose, frc::Rotation2d(units::degree_t(GetHeading())));
+}
+
+// }
 
 void DriveSubsystem::Drive(double fwd, double str, double rot, bool fieldOriented, frc::Translation2d centerOfRotation) {
 
@@ -91,6 +97,7 @@ void DriveSubsystem::PutDiagnostics() {
   SD::PutNumber("x location", m_location.Translation().X().to<double>());
   SD::PutNumber("y location", m_location.Translation().Y().to<double>());
 }
+DriveSubsystem::GetPose() {return m_odometry.GetPose();}
 
 void DriveSubsystem::Update() {
   // m_backLeftModule.SDS_UpdateState();

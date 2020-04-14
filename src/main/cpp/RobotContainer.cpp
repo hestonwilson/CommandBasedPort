@@ -9,7 +9,10 @@
 #include "Constants.h"
 #include "PenguinUtil.h"
 #include "subsystems/ShooterSubsystem.h"
-
+#include <frc/controller/PIDController.h>
+#include <frc2/command/SwerveControllerCommand.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc/trajectory/Trajectory.h
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc2/command/button/JoystickButton.h>

@@ -1,4 +1,4 @@
-#include "commands/ShootSequence.h"
+#include "commands/ShootSequenceCommand.h"
 
 ShootSequenceCommand::ShootSequenceCommand(IntakeSubsystem* intake, BeltSubsystem* belt, ShooterSubsystem* shooter) {
     addCommands(

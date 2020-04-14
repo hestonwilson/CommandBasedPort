@@ -23,9 +23,12 @@ public:
   void Update();
   void UpdateModuleEncoderOFfsetAngles();
   void ResetGyroscope();
+  frc::Pose2d GetPose();
+  
   units::degree_t GetAngle() const;
   frc::Pose2d m_location;
   void PutDiagnostics();
+  void ResetOdometry(frc::Pose2d pose);
   
   //drive constants
   const units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; // TODO: make accurate. flag: CONTROL_VELOCITY_DIRECTLY

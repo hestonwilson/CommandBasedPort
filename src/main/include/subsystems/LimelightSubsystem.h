@@ -7,16 +7,23 @@
 #include "Constants.h"
 #include "PenguinControl/PIDController.h"
 
+
 class LimelightSubsystem : public frc2::SubsystemBase {
-    public:
-    LimelightSubsystem();
-    void Periodic() override;
-    //TODO find solution to doing the autonomous limelight stuff.
-    void SetVisionCamMode();
-    void SetDriveCamMode();
-    double tx, ty;
-    PenguinPIDController m_pidController{1, 0, 0}; // curious if this will work.
-    units::radians_per_second_t CalculateRot(units::radian_t currentAngle);
-    private:
-    std::shared_ptr<NetworkTable> m_table;
+public:
+LimelightSubsystem();
+void Periodic() override;
+std::shared_ptr<NetworkTable> table;
+double horizontalOffsetAngle;
+double verticalOffsetAngle;
+double targetArea;
+double targetSkew;
+void TurnLEDOn();
+void TurnLEDOff();
+void SetAsVisionProcessor();
+void SetAsDriverCamera();
+bool HasAnyValidTargets();
+PenguinPIDController m_controller{1, 0, 0}; //see if this works.
+units::meter_t FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight);
+units::radian_t cameraMountingAngle;
+
 };

@@ -1,38 +1,47 @@
 #include "subsystems/LimelightSubsystem"
-
-LimelightSubsystem::LimelightSubsystem() {
-    m_table{nt::NetworkTableInstance::GetDefault().GetTable("limelight")} {
+#include <cmath>
+LimelightSubsystem::LimelightSubsystem() 
+  : table{nt::NetworkTableInstance::GetDefault().GetTable("limelight")} {
         
-    }
+    
 }
 
-LimelightSubsystem::Periodic() {
-tx = m_table->GetNumber("tx", PenguinConstants::Limelight::DEFAULT_VALUE);
-ty = m_table->GetNumber("ty", PenguinConstants::Limelight::DEFAULT_VALUE);
-
+LimelightSusbsystem::Periodic() {
+  horizontalOffsetAngle = table->GetNumber("tx", 0.0);
+  verticalOffsetAngle = table->GetNumber("ty",0.0);
+  targetArea = table->GetNumber("ta",0.0);
+  targetSkew = table->GetNumber("ts",0.0);
+  using SD = frc::SmartDashboard;
+  SD::PutNumber("Horizontal offset angle", horizontalOffsetAngle);
+  SD::PutNumber("Vertical offset angle", verticalOffsetAngle);
+  SD::PutNumber("Target area visible", targetArea);
+  SD::PutNumber("Target skew angle", targetSkew);
+  SD::PutBoolean("Limelight has any valid targets", HasAnyValidTargets());
+  // SD::PutNumber("Distance from target", )
 }
 
-void Limelight::SetVisionCamMode() {
-  table->PutNumber("ledMode", 3); // force LEDs on
-  table->PutNumber("camMode", 0); // vision processor
+void LimelightSubsystem::TurnLEDOn() {
+  table->PutNumber("ledMode", 3);
 }
 
-void Limelight::SetDriveCamMode() {
-  table->PutNumber("ledMode", 1); // force LEDs off
-  table->PutNumber("camMode", 1); // drive cam (increases exposure, disables vision processing)
+void LimelightSubsystem::TurnLEDOff() {
+  table->PutNumber("ledMode", 1 );
 }
-//TODO figure out best way to use the limelight autonomous as subsystem
-// could be setdefault command
-// units::radians_per_second_t LimelightAutonomous::Calculate(units::radian_t currentAngle) {
-//   const LimelightValues vals = m_limelight->GetInfo();
 
-//   return units::radians_per_second_t(
-//     m_pidController.Calculate(vals.tx)
-//   );
-// }
-// }
-// LimelightAutonomous::LimelightAutonomous(Limelight* limelight)
-// :m_limelight{limelight} {
-//     m_pidController.SetSetpoint(0);
-//     m_pidController.SetTolerance(2);
-// }
+void LimelightSubsystem::SetAsVisionProcessor() {
+  table->PutNumber("camMode", 0);
+}
+units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, units::radian_t ty) {
+  // TODO not sure whether or not to use tangent sum identity on this or not
+  //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
+  ty = verticalOffsetAngle; // TODO not sure if this is legal
+  
+  return ((targetHeight-limelightHeight) * std::tan(mountAngle + ty));
+}
+
+void LimelightSubsystem::SetAsDriverCamera() {
+  table->PutNumber("camMode", 1);
+}
+bool LimelightSubsystem::HasAnyValidTargets() {
+  return static_cast<double>(table->GetNumber("tv", 0.0));  //TODO check if necessary to cast to bool
+}

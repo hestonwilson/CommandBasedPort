@@ -9,6 +9,7 @@
 #include <frc/controller/SimpleMotorFeedforward.h>
 #include "PenguinUtil.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "subsystems/LimelightSubsystem.h"
 /** Originally in the  team 2551 2020 code
  *  the shooter subsystem encapsulated the belt,intake
  * and the shooter/aimer. Now the shooter subsystem is split
@@ -24,9 +25,12 @@ void Shoot();
 void Stop();
 void PutDiagnostics();
 void RunShooterWithFeedForward();
+
+
 rev::CANSparkMax m_shooter;
 WPI_TalonSRX m_aimer;
 rev::CANPIDController m_shooterPID = m_shooter.GetPIDController();
+//LimelightSubsystem m_limelight;
 
 rev::CANEncoder m_shooterEncoder = m_shooter.GetEncoder();
 /** RPM of NEOs operating at maximum efficiency/max power output.

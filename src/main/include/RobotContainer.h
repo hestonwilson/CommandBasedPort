@@ -47,7 +47,10 @@ class RobotContainer {
   
   
 
-  
+  frc::Joystick m_leftJoystick{0};
+  frc::Joystick m_rightJoystick{1};
+  frc::Joystick m_gamerJoystick{2};
+  frc::Joystick m_utilityJoystick{3};
   
 
  private:
@@ -60,11 +63,9 @@ class RobotContainer {
   BeltSubsystem m_beltSubsystem;
   IntakeSubsystem m_intakeSubsystem;
   ShooterSubsystem m_shooterSubsystem;
+  
 
-  frc::Joystick m_leftJoystick{0};
-  frc::Joystick m_rightJoystick{1};
-  frc::Joystick m_gamerJoystick{2};
-  frc::Joystick m_utilityJoystick{3};
+  
 
   //Joystick Buttons
   frc2::JoystickButton elevatorUpButton(&m_leftJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::ELEVATOR_UP_BUTTON);

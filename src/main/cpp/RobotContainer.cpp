@@ -25,7 +25,7 @@
 
 
 RobotContainer::RobotContainer() : 
-m_autonomousCommand(&m_driveSubsystem, &m_elevatorSubsystem, &m_shooterSubsystem, &m_beltSubsystem, &m_intakeSubsystem, m_subsystem)
+m_autonomousCommand(&m_subsystem)
 
  {
   // Initialize all of your commands and subsystems here

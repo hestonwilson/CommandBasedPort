@@ -43,5 +43,5 @@ void LimelightSubsystem::SetAsDriverCamera() {
   table->PutNumber("camMode", 1);
 }
 bool LimelightSubsystem::HasAnyValidTargets() {
-  return static_cast<double>(table->GetNumber("tv", 0.0));  //TODO check if necessary to cast to bool
+  return static_cast<bool>(table->GetNumber("tv", 0.0));  //TODO check if necessary to cast to bool
 }

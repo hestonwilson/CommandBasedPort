@@ -73,6 +73,7 @@ class RobotContainer {
   frc2::JoystickButton SpinUpButton(&m_gamerJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::SPIN_UP_BUTTON);
   frc2::JoystickButton RunIntakeButton(&m_gamerJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::RUN_INTAKE_BUTTON);
  //commands
+ // TODO do these have to be members?
   ExampleCommand m_autonomousCommand;
   DriveCommand m_driveCommand;
   RunIntakeCommand m_intakeCommand;
@@ -82,7 +83,7 @@ class RobotContainer {
 
 
   
-  //ShootCommand m_shootCommand;
+  
   //chooser for autonomous
   frc::SendableChooser<frc2::Command*> m_chooser;
   //private methods.

@@ -12,11 +12,11 @@ public:
    * @param subsystem The shooter subsystem used by this command.
    */
   explicit SpinUpCommand(ShooterSubsystem* subsystem);
-  void Initialize() override;
+  
   void Execute() override;
-  void End(bool interrupted) override;
+  
   bool IsFinished() override;
 
 private:
-  ShooterSubsystem m_shooter;
+  ShooterSubsystem* m_shooter;
 };

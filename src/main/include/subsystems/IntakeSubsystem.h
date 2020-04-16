@@ -5,7 +5,7 @@
 #include "Lidar.h"
 
 class IntakeSubsystem : public frc2::SubsystemBase {
-  IntakeSubsystem(int intakeID, frc::I2C::port lidarPort);
+  IntakeSubsystem(int intakeID, frc::I2C::Port lidarPort);
   WPI_TalonSRX m_intakeMotor;
   int m_ballCount;
   void Periodic() override;

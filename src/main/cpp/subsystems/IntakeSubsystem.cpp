@@ -13,7 +13,7 @@ void IntakeSubsystem::Periodic() {
 m_currentLidarDistance = m_ballDetector.GetDistance();
 UpdateBallCount();
 }
-void IntakeSubystem::RunIntake() {
+void IntakeSubsystem::RunIntake() {
     if(m_ballCount < 5) {
         m_intakeMotor.Set(1);
     }

@@ -6,7 +6,7 @@ explicit BeltCommand(BeltSubsystem* subsystem)
 }
 
 void BeltCommand::Execute() {
-  m_belt.m_beltMotor.Set(1); //TODO make this more precise
+  m_belt->m_beltMotor.Set(1); //TODO make this more precise
 }
 bool BeltCommand::IsFinished() {
 return false;

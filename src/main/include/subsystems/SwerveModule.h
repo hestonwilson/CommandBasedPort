@@ -27,19 +27,19 @@ class SwerveModule {
 
   rev::CANSparkMax m_driveMotor;
   rev::CANSparkMax m_turnMotor;
-
+  
   /** @param state: the desired frc::SwerveModuleState, from the kinematics */
   void SetDesiredState(frc::SwerveModuleState& state);
   void SetDirectly(double angle, double speed);
-
+  
   frc::SwerveModuleState GetState() const;
-
+  
   void PutSwerveModuleState(std::string, frc::SwerveModuleState&) const;
   void PutSwerveModuleState(std::string, units::degree_t, units::meters_per_second_t) const;
   void PutSwerveModuleState(std::string, double, double) const;
   void PutDiagnostics() const;
   void ReadSensors();
-
+  
   void UpdateAnalogOffset();
 
   SwerveModuleName m_moduleName;

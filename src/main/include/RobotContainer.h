@@ -17,7 +17,7 @@
 #include "commands/IntakeCommand.h"
 #include "commands/BeltCommand.h"
 #include "commands/SpinUpCommand.h"
-#include "commands/ShootSequence.h"
+#include "commands/ShootSequenceCommand.h"
 
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
@@ -26,7 +26,7 @@
 #include "subsystems/ShooterSubsystem.h"
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/BeltSubsystem.h"
-#include "subsystems/VisionSubsystem.h"
+#include "subsystems/LimelightSubsystem.h"
 #include <frc2/command/button/JoystickButton.h>
 
 

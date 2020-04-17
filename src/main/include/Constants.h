@@ -47,20 +47,20 @@ namespace PenguinConstants {
     constexpr auto ks = 1_V;
     constexpr auto kv = 0.8 * 1_V * 1_s / 1_m;
     constexpr auto ka = 0.15 * 1_V * 1_s * 1_s / 1_m;
-    using radians_per_second_squared_t = units::compound_unit<units::radians,
-                         units::inverse<units::squared<units::second>>>;
+    using radians_per_second_squared_t = units::compound_unit<units::radians, 
+                                                              units::inverse<units::squared<units::second>>>;
 
     constexpr units::meters_per_second_t K_MAX_VELOCITY = 3.5_mps; //TODO make accurate
     constexpr units::meters_per_second_squared_t K_MAX_ACCELERATION = units::meters_per_second_squared_t(2);
     constexpr units::radians_per_second_t K_MAX_ANGULAR_VELOCITY = units::radians_per_second_t(2.5);
-    constexpr auto K_MAX_ANGULAR_ACCELERATION = units::units_t<radians_per_second_squared_t>(3.142); // TODO make accurate
+    constexpr auto K_MAX_ANGULAR_ACCELERATION = units::unit_t<radians_per_second_squared_t>(3.142); // TODO make accurate
 
-//TODO get some holonomic following PID constants that are empirical
+    //TODO get some holonomic following PID constants that are empirical
     constexpr double kPForwardController = 0.5;
     constexpr double kPStrafeController = 0.5;
     constexpr double kPRotationController = 0.5;
 
-//motion profile for rotation controller
+    //motion profile for rotation controller
     frc::TrapezoidProfile<units::radians>::Constraints kRotationControllerConstraints{K_MAX_ANGULAR_VELOCITY, 
                                                                                             K_MAX_ANGULAR_ACCELERATION};
   }//DrivetrainAutonomous
@@ -86,7 +86,7 @@ namespace PenguinConstants {
     constexpr int INTAKE = 12;
     constexpr int BELT = 9;
     constexpr int CENTERER = 14;
-} //CAN namespace
+  } //CAN namespace
 
   namespace PWM{}
 
@@ -110,14 +110,16 @@ namespace PenguinConstants {
 
   namespace ElevatorControl { //placeholders TODO reals
     namespace FeedforwardGains {
-    //these constants are placeholders
+      //these constants are placeholders
+      using Velocity = units::compound_unit<units::turns, units::inverse<units::seconds>>;
+      using Acceleration = units::compound_unit<Velocity, units::inverse<units::seconds>>;
       using kv_unit = units::compound_unit<units::volts, units::inverse<Velocity>>;
       using ka_unit = units::compound_unit<units::volts, units::inverse<Acceleration>>;
-      constexpr units::volt_t kS = 1;
-      constexpr units::volt_t kG = 1;
+      constexpr units::volt_t kS = 1_V;
+      constexpr units::volt_t kG = units::volt_t(1);
     
-      constexpr units::unit_t<kv_unit> kV = 1
-      constexpr units::unit_t<ka_unit> kA = 1
+      constexpr units::unit_t<kv_unit> kV = units::unit_t<kv_unit>(1);
+      constexpr units::unit_t<ka_unit> kA = units::unit_t<ka_unit>(1);
     }
     constexpr units::meters_per_second_t MAX_VEL = 1.75_mps;
     constexpr units::meters_per_second_squared_t MAX_ACCEL = 0.75_mps_sq;

@@ -5,7 +5,7 @@
  * spin without stopping.
  */
 
-explicit SpinUpCommand(ShooterSubsystem* subsystem) 
+SpinUpCommand::SpinUpCommand(ShooterSubsystem* subsystem) 
 : m_shooter{subsystem} {
 
 }
@@ -18,6 +18,9 @@ bool SpinUpCommand::IsFinished() {
 if(m_shooter->ShooterReadyToShoot()) {
     return true;
   }
+  return false;
 }
+// Do not end this command because it will be used in a sequential command group,
+// the End() method of ShootSequenceCommand will stop the shooter.
 
 

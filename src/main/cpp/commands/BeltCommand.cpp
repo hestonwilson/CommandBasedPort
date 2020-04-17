@@ -1,6 +1,6 @@
 #include "commands/BeltCommand.h"
 
-explicit BeltCommand(BeltSubsystem* subsystem)
+BeltCommand::BeltCommand(BeltSubsystem* subsystem)
 :m_belt(subsystem) {
 
 }

@@ -1,12 +1,11 @@
 #include "commands/IntakeCommand.h"
 
-explicit RunIntakeCommand::RunIntakeCommand(IntakeSubsystem* subsystem)
+RunIntakeCommand::RunIntakeCommand(IntakeSubsystem* subsystem)
 : m_intake{subsystem} {
-
 }
 
 void RunIntakeCommand::Execute() {
-m_intake->Run();
+m_intake->RunIntake();
 }
 bool RunIntakeCommand::IsFinished() {
 //the intake command will be active while a button is pressed.

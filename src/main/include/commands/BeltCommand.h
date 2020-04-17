@@ -1,6 +1,6 @@
 #pragma once
-#include <frc/command/CommandBase.h>
-#include <frc/command/CommandHelper.h>
+#include <frc2/command/CommandBase.h>
+#include <frc2/command/CommandHelper.h>
 #include "subsystems/BeltSubsystem.h"
 
 class BeltCommand : public frc2::CommandHelper<CommandBase, BeltCommand> {
@@ -13,7 +13,7 @@ public:
 explicit BeltCommand(BeltSubsystem* subsystem);
 
 void Execute() override;
-void IsFinished() override;
+bool IsFinished() override;
 
 private:
 BeltSubsystem* m_belt;

@@ -11,7 +11,7 @@ public:
    *
    * @param subsystem The intake subsystem used by this command.
    */
-  explicit RunIntakeCommand(IntakeSubystem* subsystem);
+  explicit RunIntakeCommand(IntakeSubsystem* subsystem);
   
   void Execute() override;
   void End(bool interrupted) override;

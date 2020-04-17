@@ -1,13 +1,16 @@
 #include "commands/ShootSequenceCommand.h"
 
-ShootSequenceCommand::ShootSequenceCommand(IntakeSubsystem* intake, BeltSubsystem* belt, ShooterSubsystem* shooter) {
-    addCommands(
+ShootSequenceCommand::ShootSequenceCommand(BeltSubsystem* belt, ShooterSubsystem* shooter)
+: m_belt{belt},
+m_shooter{shooter}
+ {
+    AddCommands(
         SpinUpCommand(shooter),
         BeltCommand(belt)
     );
 }
-
- void End(bool interrupted) {
-     belt->Stop();
+//TODO do the subsystems need to be members of the sequential command, probably not.
+ void ShootSequenceCommand::End(bool interrupted) {
+     m_belt->Stop();
      shooter->Stop();
  }

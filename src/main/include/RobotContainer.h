@@ -68,18 +68,18 @@ class RobotContainer {
   
 
   //Joystick Buttons
-  frc2::JoystickButton elevatorUpButton(&m_leftJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::ELEVATOR_UP_BUTTON);
-  frc2::JoystickButton elevatorDownButton(&m_leftJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::ELEVATOR_DOWN_BUTTON);
-  frc2::JoystickButton SpinUpButton(&m_gamerJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::SPIN_UP_BUTTON);
-  frc2::JoystickButton RunIntakeButton(&m_gamerJoystick, PenguinConstants::Joysticks::CommandJoystickButtons::RUN_INTAKE_BUTTON);
+  frc2::JoystickButton elevatorUpButton{&m_leftJoystick, PenguinConstants::Joysticks::CommandButtons::ELEVATOR_UP_BUTTON};
+  frc2::JoystickButton elevatorDownButton{&m_leftJoystick, PenguinConstants::Joysticks::CommandButtons::ELEVATOR_DOWN_BUTTON};
+  frc2::JoystickButton SpinUpButton{&m_gamerJoystick, PenguinConstants::Joysticks::CommandButtons::SPIN_UP_BUTTON};
+  frc2::JoystickButton RunIntakeButton{&m_gamerJoystick, PenguinConstants::Joysticks::CommandButtons::RUN_INTAKE_BUTTON};
  //commands
  // TODO do these have to be members?
   ExampleCommand m_autonomousCommand;
-  DriveCommand m_driveCommand;
-  RunIntakeCommand m_intakeCommand;
-  BeltCommand m_beltCommand;
-  SpinUpCommand m_SpinUpCommand;
-  ShootSequenceCommand m_ShootSequenceCommand;
+  // DriveCommand m_driveCommand;
+  // RunIntakeCommand m_intakeCommand;
+  // BeltCommand m_beltCommand;
+  // SpinUpCommand m_SpinUpCommand;
+  // ShootSequenceCommand m_ShootSequenceCommand;
 
 
   

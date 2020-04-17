@@ -3,10 +3,10 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-
+#include <frc/controller/PIDController.h>
 #include "PenguinUtil.h"
 #include "Constants.h"
-#include "PenguinControl/PIDController.h"
+
 
 class LimelightSubsystem : public frc2::SubsystemBase {
 public:
@@ -22,7 +22,7 @@ void TurnLEDOff();
 void SetAsVisionProcessor();
 void SetAsDriverCamera();
 bool HasAnyValidTargets();
-PenguinPIDController m_controller{1, 0, 0}; //see if this works.
+frc::PIDController m_controller{1, 0, 0}; //see if this works.
 units::meter_t FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight);
 units::radian_t cameraMountingAngle;
 

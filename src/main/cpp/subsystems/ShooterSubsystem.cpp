@@ -22,9 +22,9 @@ m_aimer{aimerID}
 
   
 }
-  bool ShooterSubsystem::ShooterReadyToShoot(units::revolutions_per_minute_t atSpeed = SHOOTING_SPEED, double withinPercent = 10) {
+  bool ShooterSubsystem::ShooterReadyToShoot() {
   const bool flywheelAdjusted = true; // TODO: adjust based off of limelight, probably. maybe also use odometry?
-  const bool shootingFastEnough = PenguinUtil::withinPercentTolerance(m_shooterEncoder.GetVelocity(), atSpeed.to<double>(), withinPercent);
+  const bool shootingFastEnough = PenguinUtil::withinPercentTolerance(m_shooterEncoder.GetVelocity(), SHOOTING_SPEED.to<double>(), 10);
   return flywheelAdjusted && shootingFastEnough;     
 }
   void ShooterSubsystem::Periodic() {

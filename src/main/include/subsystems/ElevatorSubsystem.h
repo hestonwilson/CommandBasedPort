@@ -19,7 +19,7 @@ class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
    * be empirical for now
    */
   frc::ElevatorFeedforward<units::meters> m_feedForward;
-  std::shared_ptr<WPI_TalonSRX> m_elevator;
-  std::shared_ptr<WPI_VictorSPX> m_elevatorSlave;
-  std::shared_ptr<frc::Encoder> m_elevatorEncoder;
+  std::shared_ptr<WPI_TalonSRX> m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
+  std::shared_ptr<WPI_VictorSPX> m_elevatorSlave = std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE);
+  std::shared_ptr<frc::Encoder> m_elevatorEncoder = std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR_ENCODER_A, PenguinConstants::DIO::ELEVATOR_ENCODER_B);
 };

@@ -5,10 +5,7 @@ using state = frc::TrapezoidProfile<units::meters>::State;
 
 ElevatorSubsystem::ElevatorSubsystem() :
 frc2::ProfiledPIDSubsystem<units::meters>(frc::ProfiledPIDController<units::meters>(PenguinConstants::ElevatorControl::P, 0, 0, {PenguinConstants::ElevatorControl::MAX_VEL, PenguinConstants::ElevatorControl::MAX_ACCEL}),
-m_feedForward(PenguinConstants::ElevatorControl::FeedforwardGains::kS,PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV, PenguinConstants::ElevatorControl::FeedforwardGains::kA ),
-m_elevator(std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER)),
-m_elevatorSlave(std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE)),
-m_elevatorEncoder(std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR_ENCODER_A, PenguinConstants::DIO::ELEVATOR_ENCODER_B))
+m_feedForward(PenguinConstants::ElevatorControl::FeedforwardGains::kS,PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV, PenguinConstants::ElevatorControl::FeedforwardGains::kA )
 {
   
   //m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);

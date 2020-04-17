@@ -1,6 +1,6 @@
 #include "subsystems/BeltSubsystem.h"
 #include "frc/smartdashboard/SmartDashboard.h"
-BeltSubsystem::BeltSubsystem(int beltID, int lidarPort) 
+BeltSubsystem::BeltSubsystem(int beltID, frc::I2C::Port lidarPort) 
 : m_beltMotor{beltID},
 m_ballDetector{lidarPort} {
 m_beltEncoder->SetDistancePerPulse(PenguinConstants::MathConstants::PI / 8192);
@@ -13,7 +13,7 @@ m_beltMotor.SetInverted(true);
  * TODO: find solution to duplicating the lidar logic in both files,
  * 
  */
-void Periodic() {
+void BeltSubsystem::Periodic() {
   m_currentLidarDistance = m_ballDetector.GetDistance();
   UpdateBallCount();
   PutDiagnostics();
@@ -25,7 +25,7 @@ void BeltSubsystem::RunBelt(double percentDampen) {
 void BeltSubsystem::Stop() {
   m_beltMotor.Set(0);
 }
-void BeltSubystem::PutDiagnostics() {
+void BeltSubsystem::PutDiagnostics() {
   using SD = frc::SmartDashboard;
   SD::PutBoolean("ball in front of lidar", m_ballCurrentlyPassingInFrontOfLidar);
   SD::PutNumber("balls in system", m_ballCount);

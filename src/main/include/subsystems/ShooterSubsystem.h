@@ -42,7 +42,7 @@ class ShooterSubsystem : public frc2::SubsystemBase {
    //TODO move these to constants
    static constexpr units::revolutions_per_minute_t SHOOTING_SPEED = units::revolutions_per_minute_t(2940);
    static constexpr double PERCENTAGE_TOLERANCE = 10;
-   bool ShooterReadyToShoot(units::revolutions_per_minute_t atSpeed = SHOOTING_SPEED, double withinPercent = PERCENTAGE_TOLERANCE);
+   bool ShooterReadyToShoot();
    
    frc::SimpleMotorFeedforward<units::turns> m_shooterFF{PenguinConstants::ShooterSystem::Characterization::kS, PenguinConstants::ShooterSystem::Characterization::kV, PenguinConstants::ShooterSystem::Characterization::kA};
    units::meter_t dist_away_x;

@@ -31,13 +31,13 @@ void LimelightSubsystem::TurnLEDOff() {
 void LimelightSubsystem::SetAsVisionProcessor() {
   table->PutNumber("camMode", 0);
 }
-units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, units::radian_t ty) {
-  // TODO not sure whether or not to use tangent sum identity on this or not
-  //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
-  ty = verticalOffsetAngle; // TODO not sure if this is legal
+// units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, units::radian_t ty) {
+//  
+//   //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
+//   ty = verticalOffsetAngle; // TODO not sure if this is legal
   
-  return ((targetHeight-limelightHeight) * std::tan(mountAngle + ty));
-}
+//   return ((targetHeight-limelightHeight) * std::tan(mountAngle + ty));
+// }
 
 void LimelightSubsystem::SetAsDriverCamera() {
   table->PutNumber("camMode", 1);

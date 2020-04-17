@@ -3,7 +3,7 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/BeltSubsystem.h"
 
-class BeltCommand : public frc2::CommandHelper<CommandBase, BeltCommand> {
+class BeltCommand : public frc2::CommandHelper<frc2::CommandBase, BeltCommand> {
 public:
  /**
    * Creates a new BeltCommand Command

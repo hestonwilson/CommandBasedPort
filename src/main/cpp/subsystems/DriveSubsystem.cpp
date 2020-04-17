@@ -58,9 +58,9 @@ void DriveSubsystem::Drive(units::meters_per_second_t fwd, units::meters_per_sec
   m_frontLeftModule.SetDesiredState(fl);
   m_frontRightModule.SetDesiredState(fr);
 }
-void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
-  m_odometry.ResetPosition(pose, frc::Rotation2d(units::degree_t(GetHeading())));
-}
+// void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
+//   m_odometry.ResetPosition(pose, frc::Rotation2d(units::degree_t(GetHeading())));
+// } //TODO get rid of get heading.
 
 // }
 

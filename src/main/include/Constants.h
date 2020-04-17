@@ -156,7 +156,12 @@ namespace PenguinConstants {
      */
     constexpr units::inch_t LIDAR_NORMAL_DISTANCE = 30_in;
   }//ShooterSystem namespace
-
+  namespace CommandButtons {
+    constexpr int ELEVATOR_UP_BUTTON = 2;
+    constexpr int ELEVATOR_DOWN_BUTTON = 3;
+    constexpr int SPIN_UP_BUTTON = 1;
+    constexpr int RUN_INTAKE_BUTTON = 2; 
+  } //CommandButtons namespace
   namespace Joysticks {
     namespace Gamer {
       namespace Buttons {

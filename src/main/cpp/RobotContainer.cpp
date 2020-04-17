@@ -12,7 +12,7 @@
 #include <frc/controller/PIDController.h>
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc/trajectory/TrajectoryGenerator.h>
-#include <frc/trajectory/Trajectory.h
+#include <frc/trajectory/Trajectory.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -114,7 +114,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
       frc2::SwerveControllerCommand<4> swerveControllerCommand(
       exampleTrajectory, [this]() 
-      { return m_drive.GetPose(); },
+      { return m_driveSubsyste.GetPose(); },
       m_driveSubsystem.m_kinematics,
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPForwardController, 0, 0),
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPStrafeController, 0, 0),
@@ -123,17 +123,17 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
         PenguinConstants::DrivetrainAutonomous::kRotationControllerConstraints),
         [this] (auto moduleStates) {m_driveSubsystem.SetModuleStates(moduleStates);}
      {&m_driveSubsystem});
-     
-//      return new frc2::SequentialCommandGroup(
-//       std::move(swerveControllerCommand), std::move(swerveControllerCommand),
-//       frc2::InstantCommand(
-//           [this]() {
-//             m_drive.Drive(units::meters_per_second_t(0),
-//                           units::meters_per_second_t(0),
-//                           units::radians_per_second_t(0), false);
-//           },
-//           {}));
-// }
+
+     return new frc2::SequentialCommandGroup(
+      std::move(swerveControllerCommand), std::move(swerveControllerCommand),
+      frc2::InstantCommand(
+          [this]() {
+            m_drive.Drive(units::meters_per_second_t(0),
+                          units::meters_per_second_t(0),
+                          units::radians_per_second_t(0), false);
+          },
+          {}));
+}
 
 }
 

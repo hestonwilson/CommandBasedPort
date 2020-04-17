@@ -1,7 +1,8 @@
 #pragma once
 #include <frc2/command/SubsystemBase.h>
-#include "Constants.h"
 #include "ctre/Phoenix.h"
+
+#include "Constants.h"
 #include "Lidar.h"
 
 class IntakeSubsystem : public frc2::SubsystemBase {

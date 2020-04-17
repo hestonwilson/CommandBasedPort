@@ -1,14 +1,16 @@
 #pragma once
 #include <frc2/command/SubsystemBase.h>
-#include "Constants.h"
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
+#include <units/units.h>
+
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"
 #include "rev/CANEncoder.h"
 #include "rev/CANPIDController.h"
-#include <units/units.h>
-#include <frc/controller/SimpleMotorFeedforward.h>
+
+#include "Constants.h"
 #include "PenguinUtil.h"
-#include <frc/smartdashboard/SmartDashboard.h>
 #include "subsystems/LimelightSubsystem.h"
 /** Originally in the  team 2551 2020 code
  *  the shooter subsystem encapsulated the belt,intake

@@ -2,9 +2,9 @@
 #include <frc2/command/ProfiledPIDSubsystem.h>
 #include <units/units.h>
 #include "ctre/Phoenix.h"
-#include "Constants.h"
 #include <frc/Encoder.h>
 #include <frc/controller/ElevatorFeedforward.h>
+#include "Constants.h"
 
 class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
   ElevatorSubsystem();

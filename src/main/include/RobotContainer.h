@@ -45,8 +45,6 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
   
-  
-
   frc::Joystick m_leftJoystick{0};
   frc::Joystick m_rightJoystick{1};
   frc::Joystick m_gamerJoystick{2};
@@ -68,10 +66,10 @@ class RobotContainer {
   
 
   //Joystick Buttons
-  frc2::JoystickButton elevatorUpButton{&m_leftJoystick, PenguinConstants::Joysticks::CommandButtons::ELEVATOR_UP_BUTTON};
-  frc2::JoystickButton elevatorDownButton{&m_leftJoystick, PenguinConstants::Joysticks::CommandButtons::ELEVATOR_DOWN_BUTTON};
-  frc2::JoystickButton SpinUpButton{&m_gamerJoystick, PenguinConstants::Joysticks::CommandButtons::SPIN_UP_BUTTON};
-  frc2::JoystickButton RunIntakeButton{&m_gamerJoystick, PenguinConstants::Joysticks::CommandButtons::RUN_INTAKE_BUTTON};
+  frc2::JoystickButton elevatorUpButton{&m_leftJoystick, PenguinConstants::CommandButtons::ELEVATOR_UP_BUTTON};
+  frc2::JoystickButton elevatorDownButton{&m_leftJoystick, PenguinConstants::CommandButtons::ELEVATOR_DOWN_BUTTON};
+  frc2::JoystickButton SpinUpButton{&m_gamerJoystick, PenguinConstants::CommandButtons::SPIN_UP_BUTTON};
+  frc2::JoystickButton RunIntakeButton{&m_gamerJoystick, PenguinConstants::CommandButtons::RUN_INTAKE_BUTTON};
  //commands
  // TODO do these have to be members?
   ExampleCommand m_autonomousCommand;

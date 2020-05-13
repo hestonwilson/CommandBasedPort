@@ -21,7 +21,7 @@
  */
 class ShooterSubsystem : public frc2::SubsystemBase {
  public:
-   ShooterSubsystem(int shooterID, int aimerID);
+   ShooterSubsystem();
    void Periodic() override;
    //TODO: make aimer its own subsystem. 
    void Shoot();

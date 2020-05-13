@@ -1,8 +1,9 @@
 #include "subsystems/BeltSubsystem.h"
 #include "frc/smartdashboard/SmartDashboard.h"
-BeltSubsystem::BeltSubsystem(int beltID, frc::I2C::Port lidarPort) 
-: m_beltMotor{beltID},
-m_ballDetector{lidarPort} {
+
+BeltSubsystem::BeltSubsystem() 
+: m_beltMotor{PenguinConstants::CAN::BELT},
+m_ballDetector{PenguinConstants::I2C::BALL_LIDAR} {
 m_beltEncoder->SetDistancePerPulse(PenguinConstants::MathConstants::PI / 8192);
 m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
 m_beltMotor.ConfigFactoryDefault();

@@ -1,9 +1,9 @@
 #include "subsystems/IntakeSubsystem.h"
 #include "frc/smartdashboard/SmartDashboard.h"
 
-IntakeSubsystem::IntakeSubsystem(int intakeID, frc::I2C::Port lidarPort)
-:m_intakeMotor(intakeID),
-m_ballDetector(lidarPort) {
+IntakeSubsystem::IntakeSubsystem()
+:m_intakeMotor(PenguinConstants::CAN::INTAKE),
+m_ballDetector(PenguinConstants::I2C::BALL_LIDAR) {
   m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
   m_intakeMotor.ConfigFactoryDefault();
   // m_intakeMotor.SetSmartCurrentLimit(40);

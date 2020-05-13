@@ -1,8 +1,8 @@
 #include "subsystems/ShooterSubsystem.h"
 
-ShooterSubsystem::ShooterSubsystem(int shooterID, int aimerID)
-: m_shooter{shooterID, rev::CANSparkMax::MotorType::kBrushless},
-m_aimer{aimerID} 
+ShooterSubsystem::ShooterSubsystem()
+: m_shooter{PenguinConstants::CAN::SHOOTER, rev::CANSparkMax::MotorType::kBrushless},
+m_aimer{PenguinConstants::CAN::AIMER} 
 {
   m_aimer.ConfigFactoryDefault();
   m_shooter.SetClosedLoopRampRate(0);

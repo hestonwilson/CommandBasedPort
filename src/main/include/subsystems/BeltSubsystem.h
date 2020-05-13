@@ -5,9 +5,10 @@
 #include "Lidar.h"
 #include <frc/Encoder.h>
 #include <units/units.h>
+
 class BeltSubsystem : public frc2::SubsystemBase {
  public:
-  BeltSubsystem(int beltID, frc::I2C::Port lidarPort);
+  BeltSubsystem();
   void Periodic() override;
   void UpdateBallCount();
   bool BallDetectedByLidar();

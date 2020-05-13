@@ -7,18 +7,19 @@
 #include "Constants.h"
 
 class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
+ public:
   ElevatorSubsystem();
   void Periodic() override;
   units::meter_t elevatorPosition;
   units::meter_t GetMeasurement() override;
   void UseOutput(double output, frc::TrapezoidProfile<units::meters>::State setpoint) override;
   
-  private:
+ private:
   /** elevator feedforward 
-   *  gains will definitely not 
+   *  gains will definitely not s
    * be empirical for now
    */
-  frc::ElevatorFeedforward<units::meters> m_feedForward;
+  frc::ElevatorFeedforward<units::meters> m_feedforward;
   std::shared_ptr<WPI_TalonSRX> m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
   std::shared_ptr<WPI_VictorSPX> m_elevatorSlave = std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE);
   std::shared_ptr<frc::Encoder> m_elevatorEncoder = std::make_shared<frc::Encoder>(PenguinConstants::DIO::ELEVATOR_ENCODER_A, PenguinConstants::DIO::ELEVATOR_ENCODER_B);

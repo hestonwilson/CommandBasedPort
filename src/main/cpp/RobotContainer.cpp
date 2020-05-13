@@ -17,6 +17,7 @@
 #include <frc2/command/SwerveControllerCommand.h>
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/Command.h>
+#include <frc2/command/InstantCommand.h>
 
 
 
@@ -27,7 +28,7 @@
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem)
 
- {
+{
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
@@ -114,27 +115,27 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
       frc2::SwerveControllerCommand<4> swerveControllerCommand(
       exampleTrajectory, [this]() 
-      { return m_driveSubsyste.GetPose(); },
+      { return m_driveSubsystem.GetPose(); },
       m_driveSubsystem.m_kinematics,
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPForwardController, 0, 0),
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPStrafeController, 0, 0),
-      frc::ProfiledPIDController<units::radians>(
+      frc::ProfiledPIDController<units::radians>{
         PenguinConstants::DrivetrainAutonomous::kPRotationController, 0, 0,
-        PenguinConstants::DrivetrainAutonomous::kRotationControllerConstraints),
-        [this] (auto moduleStates) {m_driveSubsystem.SetModuleStates(moduleStates);}
+        PenguinConstants::DrivetrainAutonomous::kRotationControllerConstraints},
+        [this] (auto moduleStates) {m_driveSubsystem.SetModuleStates(moduleStates);},
      {&m_driveSubsystem});
 
      return new frc2::SequentialCommandGroup(
       std::move(swerveControllerCommand), std::move(swerveControllerCommand),
       frc2::InstantCommand(
           [this]() {
-            m_drive.Drive(units::meters_per_second_t(0),
+            m_driveSubsystem.Drive(units::meters_per_second_t(0),
                           units::meters_per_second_t(0),
                           units::radians_per_second_t(0), false);
           },
           {}));
 }
 
-}
+
 
 

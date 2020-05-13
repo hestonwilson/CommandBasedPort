@@ -7,7 +7,7 @@
 
 class IntakeSubsystem : public frc2::SubsystemBase {
  public:
-  IntakeSubsystem(int intakeID, frc::I2C::Port lidarPort);
+  IntakeSubsystem();
   WPI_TalonSRX m_intakeMotor;
   int m_ballCount;
   void Periodic() override;

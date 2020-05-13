@@ -1,12 +1,12 @@
 #include "subsystems/LimelightSubsystem.h"
 #include <cmath>
+
 LimelightSubsystem::LimelightSubsystem() 
-  : table{nt::NetworkTableInstance::GetDefault().GetTable("limelight")} {
-        
+  : table{nt::NetworkTableInstance::GetDefault().GetTable("limelight")} {  
     
 }
 
-LimelightSusbsystem::Periodic() {
+void LimelightSubsystem::Periodic() {
   horizontalOffsetAngle = table->GetNumber("tx", 0.0);
   verticalOffsetAngle = table->GetNumber("ty",0.0);
   targetArea = table->GetNumber("ta",0.0);

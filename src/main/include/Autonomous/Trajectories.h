@@ -10,9 +10,13 @@
  */
 
 //test to see if trajectories will work.
+
 wpi::SmallString<64> deployDirectory;
 frc::filesystem::GetDeployDirectory(deployDirectory);
 wpi::sys::path::append(deployDirectory, "paths");
 wpi::sys::path::append(deployDirectory, "Path1.wpilib.json");
 
-frc::Trajectory trajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
+
+namespace PenguinTrajectories {
+frc::Trajectory testTrajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
+}// PenguinTrajectories namespace

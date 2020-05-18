@@ -6,7 +6,8 @@
 #include <frc/controller/ElevatorFeedforward.h>
 #include "Constants.h"
 #include <frc/trajectory/TrapezoidProfile.h>
-
+/** ElevatorSubsystem is a ProfiledPIDSubsystem that uses frc::TrapezoidProfile and PID to control the elevator
+ **/
 class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
  public:
   ElevatorSubsystem();
@@ -16,11 +17,8 @@ class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
   void UseOutput(double output, frc::TrapezoidProfile<units::meters>::State setpoint) override;
   
  private:
-  /** elevator feedforward 
-   *  gains will definitely not 
-   * be empirical for now
-   */
   
+  //TODO not really necessary to have a feedforward.
   frc::ElevatorFeedforward<units::meters> m_feedforward;
   std::shared_ptr<WPI_TalonSRX> m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
   std::shared_ptr<WPI_VictorSPX> m_elevatorSlave = std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE);

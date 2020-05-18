@@ -10,7 +10,6 @@ class ShootSequenceCommand : public frc2::CommandHelper<frc2::SequentialCommandG
   public:
   /** creates a new shootsequence command
    * @param shooter the shooter subsystem
-   * @param intake the intake subsystem
    * @param belt the belt subsystem
    * 
 */
@@ -20,6 +19,6 @@ class ShootSequenceCommand : public frc2::CommandHelper<frc2::SequentialCommandG
    void End(bool interrupted) override;
 
   private:
-   BeltSubsystem * m_belt;
-   ShooterSubsystem * m_shooter;
+   BeltSubsystem* m_belt;
+   ShooterSubsystem* m_shooter;
 };

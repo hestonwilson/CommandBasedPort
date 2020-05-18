@@ -2,7 +2,7 @@
 
 BeltCommand::BeltCommand(BeltSubsystem* subsystem)
 :m_belt(subsystem) {
-
+  AddRequirements(subsystem);
 }
 
 void BeltCommand::Execute() {

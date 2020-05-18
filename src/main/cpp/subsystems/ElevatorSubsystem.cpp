@@ -7,8 +7,8 @@
 ElevatorSubsystem::ElevatorSubsystem() :
 frc2::ProfiledPIDSubsystem<units::meters>
 (frc::ProfiledPIDController<units::meters>(
-  PenguinConstants::ElevatorControl::P, 0, 0, {PenguinConstants::ElevatorControl::MAX_VEL, PenguinConstants::ElevatorControl::MAX_ACCEL})),
-m_feedforward{PenguinConstants::ElevatorControl::FeedforwardGains::kS, PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV, PenguinConstants::ElevatorControl::FeedforwardGains::kA}
+  PenguinConstants::ElevatorControl::P, 0, 0, frc::TrapezoidProfile<units::meters>::Constraints{PenguinConstants::ElevatorControl::MAX_VEL, PenguinConstants::ElevatorControl::MAX_ACCEL}, PenguinConstants::DT)),
+m_feedforward{PenguinConstants::ElevatorControl::FeedforwardGains::kS, PenguinConstants::ElevatorControl::FeedforwardGains::kG, PenguinConstants::ElevatorControl::FeedforwardGains::kV}
 {
   
   //m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
@@ -28,8 +28,7 @@ void ElevatorSubsystem::Periodic() {
 }
 
 void ElevatorSubsystem::UseOutput(double output, frc::TrapezoidProfile<units::meters>::State setpoint) {
-  units::volt_t feedforward = 
-  m_feedforward.Calculate(setpoint.position, setpoint.velocity);
+  units::volt_t feedforward =  m_feedforward.Calculate(setpoint.velocity);
   //add the feedforward to the pid output to get the motor output.
   m_elevator->SetVoltage(units::volt_t(output) + feedforward);
 }

@@ -5,6 +5,7 @@
 #include <frc/Encoder.h>
 #include <frc/controller/ElevatorFeedforward.h>
 #include "Constants.h"
+#include <frc/trajectory/TrapezoidProfile.h>
 
 class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
  public:
@@ -16,9 +17,10 @@ class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
   
  private:
   /** elevator feedforward 
-   *  gains will definitely not s
+   *  gains will definitely not 
    * be empirical for now
    */
+  
   frc::ElevatorFeedforward<units::meters> m_feedforward;
   std::shared_ptr<WPI_TalonSRX> m_elevator = std::make_shared<WPI_TalonSRX>(PenguinConstants::CAN::ELEVATOR_MASTER);
   std::shared_ptr<WPI_VictorSPX> m_elevatorSlave = std::make_shared<WPI_VictorSPX>(PenguinConstants::CAN::ELEVATOR_SLAVE);

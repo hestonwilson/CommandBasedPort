@@ -21,5 +21,6 @@ class BeltSubsystem : public frc2::SubsystemBase {
   WPI_TalonSRX m_beltMotor;
   int m_ballCount = 3;
   Lidar m_ballDetector;
-  std::shared_ptr<frc::Encoder> m_beltEncoder = std::make_shared<frc::Encoder>(PenguinConstants::DIO::BELT_ENCODER_A, PenguinConstants::DIO::BELT_ENCODER_B);
+  frc::Encoder m_beltEncoder;
+  // std::shared_ptr<frc::Encoder> m_beltEncoder = std::make_shared<frc::Encoder>(PenguinConstants::DIO::BELT_ENCODER_A, PenguinConstants::DIO::BELT_ENCODER_B);
 };

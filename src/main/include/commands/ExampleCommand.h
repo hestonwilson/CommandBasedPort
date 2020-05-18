@@ -15,12 +15,11 @@
 /**
  * An example command that uses an example subsystem.
  *
- * <p>Note that this extends CommandHelper, rather extending CommandBase
+ * <p>Note that this extends CommandHelper, rather than extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ExampleCommand
-    : public frc2::CommandHelper<frc2::CommandBase, ExampleCommand> {
+class ExampleCommand : public frc2::CommandHelper<frc2::CommandBase, ExampleCommand> {
  public:
   /**
    * Creates a new ExampleCommand.

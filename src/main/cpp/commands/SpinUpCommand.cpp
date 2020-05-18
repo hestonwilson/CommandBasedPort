@@ -7,7 +7,7 @@
 
 SpinUpCommand::SpinUpCommand(ShooterSubsystem* subsystem) 
 : m_shooter{subsystem} {
-
+  AddRequirements(subsystem);
 }
 //TODO determine if this does not need to be overridden.
 

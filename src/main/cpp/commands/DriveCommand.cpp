@@ -3,6 +3,7 @@
 DriveCommand::DriveCommand(DriveSubsystem *subsystem)
 : m_subsystem{subsystem}
 {
+    AddRequirements(subsystem);
 }
 
 void DriveCommand::Initialize(){}

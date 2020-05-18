@@ -120,8 +120,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPForwardController, 0, 0),
       frc2::PIDController(PenguinConstants::DrivetrainAutonomous::kPStrafeController, 0, 0),
       frc::ProfiledPIDController<units::radians>{
-        PenguinConstants::DrivetrainAutonomous::kPRotationController, 0, 0,
-        PenguinConstants::DrivetrainAutonomous::kRotationControllerConstraints},
+        PenguinConstants::DrivetrainAutonomous::kPRotationController, 0, 0, frc::TrapezoidProfile<units::radians>::Constraints {PenguinConstants::DrivetrainAutonomous::K_MAX_ANGULAR_VELOCITY, PenguinConstants::DrivetrainAutonomous::K_MAX_ANGULAR_ACCELERATION}
+        },
         [this] (auto moduleStates) {m_driveSubsystem.SetModuleStates(moduleStates);},
      {&m_driveSubsystem});
 

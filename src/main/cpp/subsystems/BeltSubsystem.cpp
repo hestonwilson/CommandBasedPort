@@ -3,11 +3,13 @@
 
 BeltSubsystem::BeltSubsystem() 
 : m_beltMotor{PenguinConstants::CAN::BELT},
-m_ballDetector{PenguinConstants::I2C::BALL_LIDAR} {
-m_beltEncoder->SetDistancePerPulse(PenguinConstants::MathConstants::PI / 8192);
-m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
-m_beltMotor.ConfigFactoryDefault();
-m_beltMotor.SetInverted(true);
+m_ballDetector{PenguinConstants::I2C::BALL_LIDAR},
+m_beltEncoder{PenguinConstants::DIO::BELT_ENCODER_A, PenguinConstants::DIO::BELT_ENCODER_B} {
+
+  m_beltEncoder.SetDistancePerPulse(PenguinConstants::MathConstants::PI / 8192);
+  m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
+  m_beltMotor.ConfigFactoryDefault();
+  m_beltMotor.SetInverted(true);
 }
 
 /**
@@ -34,7 +36,7 @@ void BeltSubsystem::PutDiagnostics() {
  
 }
 void BeltSubsystem::UpdateBallCount() {
-    const bool ballDetected = BallDetectedByLidar();
+  const bool ballDetected = BallDetectedByLidar();
   if (!m_ballCurrentlyPassingInFrontOfLidar) {
     if (ballDetected) {
       m_ballCurrentlyPassingInFrontOfLidar = true;

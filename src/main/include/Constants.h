@@ -61,8 +61,8 @@ namespace PenguinConstants {
     constexpr double kPRotationController = 0.5;
 
     //motion profile for rotation controller
-    frc::TrapezoidProfile<units::radians>::Constraints kRotationControllerConstraints{K_MAX_ANGULAR_VELOCITY, 
-                                                                                            K_MAX_ANGULAR_ACCELERATION};
+    // frc::TrapezoidProfile<units::radians>::Constraints kRotationControllerConstraints{K_MAX_ANGULAR_VELOCITY, 
+                                                                                            // K_MAX_ANGULAR_ACCELERATION};
   }//DrivetrainAutonomous
   namespace CAN {
     namespace SwerveConstants {
@@ -115,11 +115,11 @@ namespace PenguinConstants {
       using Acceleration = units::compound_unit<Velocity, units::inverse<units::seconds>>;
       using kv_unit = units::compound_unit<units::volts, units::inverse<Velocity>>;
       using ka_unit = units::compound_unit<units::volts, units::inverse<Acceleration>>;
-      constexpr units::volt_t kS = 1_V;
-      constexpr units::volt_t kG = units::volt_t(1);
+      constexpr units::volt_t kS = 0.5_V;
+      constexpr units::volt_t kG = 1_V;
     
-      constexpr units::unit_t<kv_unit> kV = units::unit_t<kv_unit>(1);
-      constexpr units::unit_t<ka_unit> kA = units::unit_t<ka_unit>(1);
+      constexpr auto kV = 0.8 * 1_V * 1_s / 1_m;
+      // constexpr units::unit_t<ka_unit> kA = units::unit_t<ka_unit>(1);
     }
     constexpr units::meters_per_second_t MAX_VEL = 1.75_mps;
     constexpr units::meters_per_second_squared_t MAX_ACCEL = 0.75_mps_sq;

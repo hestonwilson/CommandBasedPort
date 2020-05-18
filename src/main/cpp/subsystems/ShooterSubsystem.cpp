@@ -36,6 +36,9 @@ m_aimer{PenguinConstants::CAN::AIMER}
     // however now it just needs to spin up to speed.
     // everything else will be handled by other subsystems.
   }
+  void ShooterSubsystem::Stop() {
+    m_shooter.Set(0);
+  }
 
   void ShooterSubsystem::PutDiagnostics() {
     frc::SmartDashboard::PutNumber("shooter speed", m_shooterEncoder.GetVelocity());

@@ -5,7 +5,7 @@
 #include <wpi/SmallString.h>
 
 /** the point of this file is to hold trajectories.
- * 
+ *  it does not work                                                                                                                                                                                                                              
  * 
  */
 

@@ -9,15 +9,15 @@ class IntakeSubsystem : public frc2::SubsystemBase {
  public:
   IntakeSubsystem();
   WPI_TalonSRX m_intakeMotor;
-  int m_ballCount;
+  // int m_ballCount;
   void Periodic() override;
-  void UpdateBallCount();
+  // void UpdateBallCount();
   void RunIntake();
-  bool BallDetectedByLidar();
+  // bool BallDetectedByLidar();
   void Stop();
   
  private:
-  bool m_ballCurrentlyPassingInFrontOfLidar;
-  units::inch_t m_currentLidarDistance;
+  // bool m_ballCurrentlyPassingInFrontOfLidar;
+  // units::inch_t m_currentLidarDistance;
   Lidar m_ballDetector;
 };

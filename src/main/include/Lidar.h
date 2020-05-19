@@ -3,8 +3,9 @@
 #include "frc/I2C.h"
 #include "frc/Timer.h"
 
-#include "units/units.h"
+#include <units/units.h>
 
+#include "Constants.h"
 class Lidar {
  public:
 	Lidar() {
@@ -51,15 +52,54 @@ class Lidar {
   units::inch_t GetDistance() {
     return units::inch_t(AquireDistance());
   }
+  
+  bool GetBallCurrentlyPassingInFrontOfLidar() {
+    return m_ballCurrentlyPassingInFrontOfLidar;
+  }
+  void UpdateBallCurrentlyPassingInFrontOfLidar() {
+    m_ballCurrentlyPassingInFrontOfLidar = BallDetectedByLidar();
+  }
+  void SetBallCurrentlyPassingInFrontOfLidar(bool Is) {
+    m_ballCurrentlyPassingInFrontOfLidar = Is;
+  }
+  int GetBallCount() {
+    return m_ballCount;
+  }
+  void SetBallCount(int amount = 1) {
+    //default to increment by 1
+    m_ballCount += amount;
+  }
+  void UpdateDistance() {
+    m_currentLidarDistance = GetDistance();
+  }
+  bool BallDetectedByLidar() {
+    UpdateDistance();
+    return m_currentLidarDistance < PenguinConstants::ShooterSystem::LIDAR_NORMAL_DISTANCE * 0.8;
+  }
+  void UpdateBallCount() {
+    bool ballDetected = BallDetectedByLidar();
+    if(!m_ballCurrentlyPassingInFrontOfLidar){
+      if(ballDetected){
+        m_ballCurrentlyPassingInFrontOfLidar = true;
+        m_ballCount +=1;
+      }
+    } else {
+      if(!ballDetected) {
+        m_ballCurrentlyPassingInFrontOfLidar = false;
+      }
+    }
+  }
 
-private:
+ private:
 	enum Address {ADDRESS_DEFAULT=0x62}; // default I2C bus address for the LIDAR Lite v2
 	enum Register {COMMAND=0x00, STATUS=0x01, DISTANCE_1_2=0x8f};
 	enum Command {ACQUIRE_DC_CORRECT=0x04};
 	enum NumberOfRegistersToRead {READ_1_REGISTER=0x01, READ_2_REGISTERS=0x02};
 	enum NumberOfRegistersToWrite {WRITE_1_REGISTER=0x01};
 	frc::I2C* I2CBus;
-
+  units::inch_t m_currentLidarDistance = units::inch_t(0);
+  bool m_ballCurrentlyPassingInFrontOfLidar = false;
+  int m_ballCount;
   bool initialized = false;
 
 	bool Busy()	{

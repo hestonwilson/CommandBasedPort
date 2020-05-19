@@ -13,7 +13,7 @@ class DriveCommand : public frc2::CommandHelper<frc2::CommandBase, DriveCommand>
    *
    * @param DriveSubsystem The subsystem used by this command.
 */
-  // don't want any type conversions so explicit.
+  
   explicit DriveCommand(DriveSubsystem* subsystem);
   void Initialize() override;
   void Execute() override;

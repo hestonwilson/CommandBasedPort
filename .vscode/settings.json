@@ -79,6 +79,6 @@
     "typeinfo": "cpp",
     "*.inc": "cpp"
   },
-  "C_Cpp.errorSquiggles": "Enabled",
+  "C_Cpp.errorSquiggles": "Disabled",
   "wpilib.selectDefaultSimulateExtension": true
 }

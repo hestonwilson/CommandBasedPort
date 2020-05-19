@@ -8,10 +8,12 @@ RunIntakeCommand::RunIntakeCommand(IntakeSubsystem* subsystem)
 void RunIntakeCommand::Execute() {
 m_intake->RunIntake();
 }
+
+//RunIntakeCommand does not have an exit condition because it is bound to a trigger.
 bool RunIntakeCommand::IsFinished() {
-//the intake command will be active while a button is pressed.
 return false;
 }
+
 void RunIntakeCommand::End(bool interrupted) {
 m_intake->Stop();
 }

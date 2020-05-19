@@ -8,7 +8,7 @@
 #include "subsystems/ShooterSubsystem.h"
 class ShootSequenceCommand : public frc2::CommandHelper<frc2::SequentialCommandGroup, ShootSequenceCommand> {
   public:
-  /** creates a new shootsequence command
+  /** creates a new ShootSequenceCommand
    * @param shooter the shooter subsystem
    * @param belt the belt subsystem
    * 

@@ -9,7 +9,7 @@ m_shooter{shooter}
         BeltCommand(belt)
     );
 }
-//TODO do the subsystems need to be members of the sequential command, probably not.
+
  void ShootSequenceCommand::End(bool interrupted) {
      m_belt->Stop();
      m_shooter->Stop();

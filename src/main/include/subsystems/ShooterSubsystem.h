@@ -31,7 +31,7 @@ class ShooterSubsystem : public frc2::SubsystemBase {
    
    
    rev::CANSparkMax m_shooter;
-   WPI_TalonSRX m_aimer;
+   
    rev::CANPIDController m_shooterPID = m_shooter.GetPIDController();
    //LimelightSubsystem m_limelight;
 

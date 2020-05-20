@@ -14,3 +14,8 @@ m_aimer{PenguinConstants::CAN::AIMER} {
   m_aimer.SetSelectedSensorPosition(0); // !Imp: Assumes the aimer is always in the same place when the robot turns on
   m_aimer.SetSensorPhase(false); // TODO
 }
+
+// void AimerSubsystem::Periodic() {
+// //   m_aimer.Set(ControlMode::PercentOutput, m_gamerJoystick.GetRawAxis(PenguinConstants::Joysticks::Gamer::Axes::RIGHT_X));
+
+// }

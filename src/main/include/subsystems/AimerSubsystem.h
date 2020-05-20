@@ -1,6 +1,6 @@
 #pragma once
 
-#include <frc2/command/SubsystemBase>
+#include <frc2/command/SubsystemBase.h>
 #include "ctre/Phoenix.h"
 
 #include "Constants.h"
@@ -11,10 +11,9 @@
 class AimerSubsystem : public frc2::SubsystemBase {
  public:
   AimerSubsystem();
- 
-  void Raise();
-  void Lower();
+  //TODO implement PID control for the aimer.
+  // void Periodic() override;
 
  private:
   WPI_TalonSRX m_aimer;
-}
+};

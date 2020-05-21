@@ -5,31 +5,48 @@ DriveCommand::DriveCommand(DriveSubsystem *subsystem, std::function<double()> fo
 m_forward{forward},
 m_strafe{strafe},
 m_rotation{rotation},
-m_fieldOrientedChecker{fieldOriented},
+m_fieldOriented{fieldOriented},
 m_centerOfRotationChooser{centerOfRotation}
 {   
   AddRequirements({subsystem});
   SetName("DriveCommand");
-  //this is not necessary, TODO
-//   m_centerOfRotation = m_centerOfRotationChooser();
-//   m_fieldOriented = m_fieldOrientedChecker();
-
+  
   //Test if my approach with passing in lambdas works.
-  frc::SmartDashboard::PutBoolean("FieldOriented", m_fieldOriented);
-  frc::SmartDashboard::PutNumber("CenterOfRotationX", m_centerOfRotation.X().to<double>());
-  frc::SmartDashboard::PutNumber("CenterOfRotationY", m_centerOfRotation.Y().to<double>());
-  frc::SmartDashboard::PutNumber("FwdCommand", m_forward());
-  frc::SmartDashboard::PutNumber("StrCommand", m_strafe());
-  frc::SmartDashboard::PutNumber("RotCommand", m_rotation());
+  
 }
 
 void DriveCommand::Initialize(){}
 
 void DriveCommand::Execute() {
+  double fwd = m_forward();
+  double str = m_strafe();
+  double rot = m_rotation();
+  bool fieldOriented = m_fieldOriented();
+  frc::Translation2d centerOfRotation = m_centerOfRotation();
+
+  //Note deadband values may be subject to change and are not covered
+  //under warranty
+  fwd = PenguinUtil::smartDeadband(forward, -0.2, 0.16);
+  fwd *= -1;
+  fwd = copysign(pow(fwd, 2), fwd);
+  
+  str *= -1;
+  str = copysign(pow(str, 2), str);
+
+  rot * = -1;
+  rot = copysign(pow(rot, 2), rot);
+  SD::PutNumber("fwd command", fwd);
+  SD::PutNumber("str command", str);
+  SD::PutNumber("rot command", rot);
 
 }
 //keep the drive command going.
 bool DriveCommand::IsFinished() {return false;}
 
-
+void DriveCommand::LogRaw() {
+  frc::SmartDashboard::PutBoolean("FieldOriented", m_fieldOriented);
+  frc::SmartDashboard::PutNumber("RawFwdCommand", m_forward());
+  frc::SmartDashboard::PutNumber("RawStrCommand", m_strafe());
+  frc::SmartDashboard::PutNumber("RawRotCommand", m_rotation());
+}
 

@@ -81,7 +81,8 @@ class RobotContainer {
   frc2::JoystickButton elevatorDownButton{&m_leftJoystick, PenguinConstants::CommandButtons::ELEVATOR_DOWN_BUTTON};
   frc2::JoystickButton SpinUpButton{&m_gamerJoystick, PenguinConstants::CommandButtons::SPIN_UP_BUTTON};
   frc2::JoystickButton RunIntakeButton{&m_gamerJoystick, PenguinConstants::CommandButtons::RUN_INTAKE_BUTTON};
-  
+  frc2::JoystickButton resetGyroButton{&m_leftJoystick, PenguinConstants::CommandButtons::RESET_GYRO_BUTTON}; //forgot what joystick flight is so this is a guess.
+
   //Commands
   ExampleCommand m_autonomousCommand;
   // DriveCommand m_driveCommand;
@@ -89,7 +90,7 @@ class RobotContainer {
   BeltCommand m_beltCommand;
   SpinUpCommand m_spinUpCommand;
   ShootSequenceCommand m_shootSequenceCommand;
- 
+  frc2::InstantCommand m_resetGyro{[this] {m_driveSubsystem.ResetGyroscope();}, {&m_driveSubsystem}};
   //chooser for autonomous
   frc::SendableChooser<frc2::Command*> m_chooser;
   //chooser for autonomous actions

@@ -85,8 +85,8 @@ void RobotContainer::ConfigureButtonBindings() {
     //move elevator down
   frc2::JoystickButton(&m_leftJoystick, 3)
     .WhenPressed([this] {m_elevatorSubsystem.SetGoal(0_m);}, {&m_elevatorSubsystem});
-  
 
+  resetGyroButton.WhenPressed(&m_resetGyro);
   RunIntakeButton.WhileHeld(RunIntakeCommand(&m_intakeSubsystem));
 
 }

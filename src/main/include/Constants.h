@@ -160,7 +160,8 @@ namespace PenguinConstants {
     constexpr int ELEVATOR_UP_BUTTON = 2;
     constexpr int ELEVATOR_DOWN_BUTTON = 3;
     constexpr int SPIN_UP_BUTTON = 1;
-    constexpr int RUN_INTAKE_BUTTON = 2; 
+    constexpr int RUN_INTAKE_BUTTON = 2;
+    constexpr int RESET_GYRO_BUTTON = 11; 
   } //CommandButtons namespace
   namespace Joysticks {
     namespace Gamer {

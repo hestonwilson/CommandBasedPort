@@ -2,7 +2,7 @@
 
 RunIntakeCommand::RunIntakeCommand(IntakeSubsystem* subsystem)
 : m_intake{subsystem} {
-  AddRequirements(subsystem);
+  AddRequirements({subsystem});
 }
 
 void RunIntakeCommand::Execute() {

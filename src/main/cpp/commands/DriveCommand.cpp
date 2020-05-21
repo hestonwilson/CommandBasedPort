@@ -10,8 +10,17 @@ m_centerOfRotationChooser{centerOfRotation}
 {   
   AddRequirements({subsystem});
   SetName("DriveCommand");
-  m_centerOfRotation = m_centerOfRotationChooser();
-  m_fieldOriented = m_fieldOrientedChecker();
+  //this is not necessary, TODO
+//   m_centerOfRotation = m_centerOfRotationChooser();
+//   m_fieldOriented = m_fieldOrientedChecker();
+
+  //Test if my approach with passing in lambdas works.
+  frc::SmartDashboard::PutBoolean("FieldOriented", m_fieldOriented);
+  frc::SmartDashboard::PutNumber("CenterOfRotationX", m_centerOfRotation.X().to<double>());
+  frc::SmartDashboard::PutNumber("CenterOfRotationY", m_centerOfRotation.Y().to<double>());
+  frc::SmartDashboard::PutNumber("FwdCommand", m_forward());
+  frc::SmartDashboard::PutNumber("StrCommand", m_strafe());
+  frc::SmartDashboard::PutNumber("RotCommand", m_rotation());
 }
 
 void DriveCommand::Initialize(){}

@@ -8,9 +8,17 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc2/command/SwerveControllerCommand.h>
+#include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/SwerveControllerCommand.h>
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/InstantCommand.h>
+#include <frc2/command/RunCommand.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Joystick.h>
-#include <frc2/command/button/JoystickButton.h>
+#include <frc/controller/PIDController.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc/trajectory/Trajectory.h>
 
 #include "commands/ExampleCommand.h"
 #include "commands/DriveCommand.h"
@@ -25,6 +33,10 @@
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/BeltSubsystem.h"
 #include "subsystems/LimelightSubsystem.h"
+#include "subsystems/AimerSubsystem.h"
+
+#include "Constants.h"
+#include "PenguinUtil.h"
 
 // #include "Autonomous/Trajectories.h"
 
@@ -46,10 +58,6 @@ class RobotContainer {
     DoNothing = 0
   };
   
-  
-  
-
-
  private:
   // The robot's subsystems and commands are defined here...
  
@@ -60,6 +68,7 @@ class RobotContainer {
   BeltSubsystem m_beltSubsystem;
   IntakeSubsystem m_intakeSubsystem;
   ShooterSubsystem m_shooterSubsystem;
+  AimerSubsystem m_aimerSubsystem;
   
   //Joysticks
   frc::Joystick m_leftJoystick{0};
@@ -72,15 +81,14 @@ class RobotContainer {
   frc2::JoystickButton elevatorDownButton{&m_leftJoystick, PenguinConstants::CommandButtons::ELEVATOR_DOWN_BUTTON};
   frc2::JoystickButton SpinUpButton{&m_gamerJoystick, PenguinConstants::CommandButtons::SPIN_UP_BUTTON};
   frc2::JoystickButton RunIntakeButton{&m_gamerJoystick, PenguinConstants::CommandButtons::RUN_INTAKE_BUTTON};
-  //commands
   
-  // TODO do these have to be members?
+  //Commands
   ExampleCommand m_autonomousCommand;
   // DriveCommand m_driveCommand;
-  // RunIntakeCommand m_intakeCommand;
-  // BeltCommand m_beltCommand;
-  // SpinUpCommand m_SpinUpCommand;
-  // ShootSequenceCommand m_ShootSequenceCommand;
+  RunIntakeCommand m_intakeCommand;
+  BeltCommand m_beltCommand;
+  SpinUpCommand m_spinUpCommand;
+  ShootSequenceCommand m_shootSequenceCommand;
  
   //chooser for autonomous
   frc::SendableChooser<frc2::Command*> m_chooser;

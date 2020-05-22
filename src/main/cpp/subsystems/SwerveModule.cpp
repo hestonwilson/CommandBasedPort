@@ -34,9 +34,9 @@ SwerveModule::SwerveModule(frc::Translation2d pos, int analogEncoderPort, units:
   // m_onboardDriveMotorPIDController.SetI(0);
   // m_onboardDriveMotorPIDController.SetD(0.5);
 
-  m_onboardTurnMotorPIDController.SetP(1.5);
-  m_onboardTurnMotorPIDController.SetI(0);
-  m_onboardTurnMotorPIDController.SetD(0.5);
+  m_onboardTurnMotorPIDController.SetP(PenguinConstants::TurnPID::P);
+  m_onboardTurnMotorPIDController.SetI(PenguinConstants::TurnPID::I);
+  m_onboardTurnMotorPIDController.SetD(PenguinConstants::TurnPID::D);
 
   ReadSensors();
 }

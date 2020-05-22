@@ -31,8 +31,8 @@ void LimelightSubsystem::TurnLEDOff() {
 void LimelightSubsystem::SetAsVisionProcessor() {
   table->PutNumber("camMode", 0);
 }
-//this method calculates 
-units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, double ty) {
+
+units::meter_t LimelightSubsystem::EstimateTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, double ty) {
  
   //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
   ty = verticalOffsetAngle;

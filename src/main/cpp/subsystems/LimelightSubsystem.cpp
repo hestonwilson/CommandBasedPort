@@ -31,13 +31,17 @@ void LimelightSubsystem::TurnLEDOff() {
 void LimelightSubsystem::SetAsVisionProcessor() {
   table->PutNumber("camMode", 0);
 }
-// units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, units::radian_t ty) {
-//  
-//   //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
-//   ty = verticalOffsetAngle; // TODO not sure if this is legal
-  
-//   return ((targetHeight-limelightHeight) * std::tan(mountAngle + ty));
-// }
+//this method calculates 
+units::meter_t LimelightSubsystem::FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, double ty) {
+ 
+  //equation for distance from https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-a-fixed-angle-camera
+  ty = verticalOffsetAngle;
+
+  //TODO check to make sure this works
+  auto distance = units::meter_t(((targetHeight-limelightHeight).to<double>()) * std::tan((mountAngle.to<double>()) + ty));
+  frc::SmartDashboard::PutNumber("Distance to target", distance.to<double>());
+  return distance;
+}
 
 void LimelightSubsystem::SetAsDriverCamera() {
   table->PutNumber("camMode", 1);

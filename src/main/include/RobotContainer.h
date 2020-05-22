@@ -55,7 +55,8 @@ class RobotContainer {
   
   //TODO give options for autonomous
   enum AutonomousAction {
-    DoNothing = 0
+    DoNothing,
+    BasicTrajectory 
   };
   
  private:
@@ -69,6 +70,7 @@ class RobotContainer {
   IntakeSubsystem m_intakeSubsystem;
   ShooterSubsystem m_shooterSubsystem;
   AimerSubsystem m_aimerSubsystem;
+  LimelightSubsystem m_limelightSubsystem;
   
   //Joysticks
   frc::Joystick m_leftJoystick{0};
@@ -91,6 +93,7 @@ class RobotContainer {
   SpinUpCommand m_spinUpCommand;
   ShootSequenceCommand m_shootSequenceCommand;
   frc2::InstantCommand m_resetGyro{[this] {m_driveSubsystem.ResetGyroscope();}, {&m_driveSubsystem}};
+
   //chooser for autonomous
   frc::SendableChooser<frc2::Command*> m_chooser;
   //chooser for autonomous actions

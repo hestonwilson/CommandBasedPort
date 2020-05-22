@@ -108,19 +108,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
       // Pass the config
       config);
-      /** SwerveControllerCommand creates a swerve controller command
-       * object that is basically an all in one solution
-       * for trajectory following with swerve drive.
-       * @param trajectory the trajectory to follow
-       * @param function object that returns a pose 2d
-       * @param m_kinematics the kinematics for the drivetrain
-       * @param xPIDController pid controller for x
-       * @param yPIDController the pid controller for y
-       * @param ProfiledPIDController pid controller for rotation
-       * @param swervemodulestates the swervemodulestate objects
-       * @param subsystem the subsystem that will be used.
-       */
 
+      //note: for this command to work the onboard PID controller on the Spark Maxes may need to be used.
       frc2::SwerveControllerCommand<4> swerveControllerCommand(
       exampleTrajectory, [this]() 
       { return m_driveSubsystem.GetPose(); },
@@ -143,7 +132,5 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
           },
           {}));
 }
-
-
 
 

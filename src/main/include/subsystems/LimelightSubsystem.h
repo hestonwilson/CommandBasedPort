@@ -23,7 +23,7 @@ void SetAsVisionProcessor();
 void SetAsDriverCamera();
 bool HasAnyValidTargets();
 frc2::PIDController m_controller{1, 0, 0}; 
-units::meter_t FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight);
+units::meter_t FindTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, double ty);
 units::radian_t cameraMountingAngle;
 
 };

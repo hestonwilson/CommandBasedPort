@@ -7,8 +7,10 @@ LimelightSubsystem::LimelightSubsystem()
 }
 
 void LimelightSubsystem::Periodic() {
-  horizontalOffsetAngle = table->GetNumber("tx", 0.0);
-  verticalOffsetAngle = table->GetNumber("ty",0.0);
+  UpdateHorizontalOffsetAngle();
+  UpdateVerticalOffsetAngle();
+  // horizontalOffsetAngle = table->GetNumber("tx", 0.0);
+  // verticalOffsetAngle = table->GetNumber("ty",0.0);
   targetArea = table->GetNumber("ta",0.0);
   targetSkew = table->GetNumber("ts",0.0);
   using SD = frc::SmartDashboard;
@@ -27,6 +29,10 @@ void LimelightSubsystem::TurnLEDOn() {
 void LimelightSubsystem::TurnLEDOff() {
   table->PutNumber("ledMode", 1 );
 }
+
+void LimelightSubsystem::UpdateHorizontalOffsetAngle() {horizontalOffsetAngle = table->GetNumber("tx", 0.0);}
+
+void LimelightSubsystem::UpdateVerticalOffsetAngle() {verticalOffsetAngle = table->GetNumber("ty", 0.0);}
 
 void LimelightSubsystem::SetAsVisionProcessor() {
   table->PutNumber("camMode", 0);

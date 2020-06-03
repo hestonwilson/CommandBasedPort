@@ -42,11 +42,11 @@ namespace PenguinConstants {
     const frc::Rotation2d TWO_PI_ROT = frc::Rotation2d(TWO_PI_RAD);
 
   }//MathConstants namespace
-  namespace TurnPID {
-    double P{1.5};
-    double I{0};
-    double D{0.5};
-  }
+  // namespace TurnPID {
+  //   double P{1.5};
+  //   double I{0};
+  //   double D{0.5};
+  // }
   namespace DrivetrainAutonomous {
   //TODO these are placeholders.
     constexpr auto ks = 1_V;
@@ -144,10 +144,10 @@ namespace PenguinConstants {
     }//ShooterPID namespace
     namespace OptimalTargetDistance {
       // optimal distance to shoot from for each target 
-      //TODO make empirical 
-      units::meter_t LOWER_TARGET_DISTANCE = 2_m;
-      units::meter_t UPPER_TARGET_DISTANCE = 4_m;
-      units::meter_t UPPER_INNER_TARGET_DISTANCE = 4_m;
+      // //TODO make empirical 
+      // units::meter_t LOWER_TARGET_DISTANCE = 2_m;
+      // units::meter_t UPPER_TARGET_DISTANCE = 4_m;
+      // units::meter_t UPPER_INNER_TARGET_DISTANCE = 4_m;
     }
     namespace Characterization {
       // Unit definitions copied [from WPILib](https://github.com/wpilibsuite/allwpilib/blob/0ec8ed6c052b18402924daac591ff9e192695825/wpilibc/src/main/native/include/frc/controller/SimpleMotorFeedforward.h#L21):

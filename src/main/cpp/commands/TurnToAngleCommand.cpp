@@ -5,7 +5,7 @@
 
 
 TurnToAngleCommand::TurnToAngleCommand(units::degree_t targetAngle, DriveSubsystem* drivetrain)
-: CommandHelper(frc2::PIDController{PenguinConstants::TurnPID::P, PenguinConstants::TurnPID::I, PenguinConstants::TurnPID::D},
+: CommandHelper(frc2::PIDController{1, 0, 0.5},
                 [drivetrain] { return drivetrain->GetAngle().to<double>();},
                 targetAngle.to<double>(),
                 [drivetrain] (double output) { drivetrain->Drive(0.0, 0.0, output, true, frc::Translation2d());},

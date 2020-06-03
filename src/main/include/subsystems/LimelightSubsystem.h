@@ -23,6 +23,8 @@ class LimelightSubsystem : public frc2::SubsystemBase {
   void SetAsDriverCamera();
   bool HasAnyValidTargets();
   frc2::PIDController m_controller{1, 0, 0}; 
+  void UpdateHorizontalOffsetAngle();
+  void UpdateVerticalOffsetAngle();
   /**
    * EstimateTargetDistance estimates distance to a target.
    * @param mountAngle the angle the limelight is mounted at relative to the ground.
@@ -34,6 +36,6 @@ class LimelightSubsystem : public frc2::SubsystemBase {
    * and probably will not work if it is lower than the camera.
    */ 
   units::meter_t EstimateTargetDistance(units::radian_t mountAngle, units::meter_t limelightHeight, units::meter_t targetHeight, double ty);
-  units::radian_t cameraMountingAngle;
+  units::radian_t cameraMountingAngle = units::radian_t(0);
 
 };

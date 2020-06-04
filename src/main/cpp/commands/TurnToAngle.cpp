@@ -1,10 +1,10 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "commands/TurnToAngleCommand.h"
+#include "commands/TurnToAngle.h"
 
 
-TurnToAngleCommand::TurnToAngleCommand(units::degree_t targetAngle, DriveSubsystem* drivetrain)
+TurnToAngle::TurnToAngle(units::degree_t targetAngle, DriveSubsystem* drivetrain)
 : CommandHelper(frc2::PIDController{1, 0, 0.5},
                 [drivetrain] { return drivetrain->GetAngle().to<double>();},
                 targetAngle.to<double>(),
@@ -22,9 +22,9 @@ TurnToAngleCommand::TurnToAngleCommand(units::degree_t targetAngle, DriveSubsyst
 }
 
 
-// void TurnToAngleCommand::Execute() {
+// void TurnToAngle::Execute() {
 // //   m_currentAngle = drivetrain->GetAngle();
 
 // }
 
-bool TurnToAngleCommand::IsFinished() { return GetController().AtSetpoint(); }
+bool TurnToAngle::IsFinished() { return GetController().AtSetpoint(); }

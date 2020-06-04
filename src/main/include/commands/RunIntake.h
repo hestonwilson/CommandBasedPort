@@ -3,15 +3,15 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-class RunIntakeCommand : public frc2::CommandHelper<frc2::CommandBase, RunIntakeCommand> {
+class RunRunIntake : public frc2::CommandHelper<frc2::CommandBase, RunRunIntake> {
 
 public:
    /**
-   * Creates a new RunIntakeCommand
+   * Creates a new RunRunIntake
    *
    * @param subsystem The intake subsystem used by this command.
    */
-  explicit RunIntakeCommand(IntakeSubsystem* subsystem);
+  explicit RunRunIntake(IntakeSubsystem* subsystem);
   
   void Execute() override;
   void End(bool interrupted) override;

@@ -60,7 +60,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  // m_driveCommand = m_robotContainer.getDriveCommand(); //get drive command
+  // m_Drive = m_robotContainer.getDrive(); //get drive command
 }
 
 /**

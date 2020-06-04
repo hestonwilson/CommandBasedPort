@@ -1,4 +1,4 @@
-#include "commands/DriveCommand.h"
+#include "commands/Drive.h"
 
 DriveCommand::DriveCommand(DriveSubsystem *subsystem, std::function<double()> forward, std::function<double()> strafe, std::function<double()> rotation, std::function<bool()> fieldOriented, std::function<frc::Translation2d()> centerOfRotation)
 : m_drive{subsystem},
@@ -11,7 +11,8 @@ m_centerOfRotation{centerOfRotation}
   AddRequirements({subsystem});
   SetName("DriveCommand");
   
-  //Test if my approach with passing in lambdas works.
+ 
+  //note: I have no idea if passing lambdas in from robot container will actually allow me to access the joystick values. Otherwise just make them public.
   
 }
 
@@ -39,6 +40,7 @@ void DriveCommand::Execute() {
   SD::PutNumber("fwd command", fwd);
   SD::PutNumber("str command", str);
   SD::PutNumber("rot command", rot);
+  m_drive->Drive(fwd, str, rot, fieldOriented, centerOfRotation);
 
 }
 //keep the drive command going.

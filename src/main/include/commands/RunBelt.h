@@ -3,14 +3,14 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/BeltSubsystem.h"
 
-class BeltCommand : public frc2::CommandHelper<frc2::CommandBase, BeltCommand> {
+class RunBelt : public frc2::CommandHelper<frc2::CommandBase, RunBelt> {
 public:
  /**
-   * Creates a new BeltCommand Command
+   * Creates a new RunBelt Command
    *
    * @param subsystem The belt subsystem used by this command.
    */
-explicit BeltCommand(BeltSubsystem* subsystem);
+explicit RunBelt(BeltSubsystem* subsystem);
 
 void Execute() override;
 bool IsFinished() override;

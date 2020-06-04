@@ -21,11 +21,11 @@
 #include <frc/trajectory/Trajectory.h>
 
 #include "commands/ExampleCommand.h"
-#include "commands/DriveCommand.h"
-#include "commands/IntakeCommand.h"
-#include "commands/BeltCommand.h"
-#include "commands/SpinUpCommand.h"
-#include "commands/ShootSequenceCommand.h"
+#include "commands/Drive.h"
+#include "commands/RunIntake.h"
+#include "commands/RunBelt.h"
+#include "commands/SpinUp.h"
+#include "commands/ShootSequence.h"
 
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/ElevatorSubsystem.h"
@@ -87,11 +87,11 @@ class RobotContainer {
 
   //Commands
   ExampleCommand m_autonomousCommand;
-  // DriveCommand m_driveCommand;
-  RunIntakeCommand m_intakeCommand;
-  BeltCommand m_beltCommand;
-  SpinUpCommand m_spinUpCommand;
-  ShootSequenceCommand m_shootSequenceCommand;
+  // Drive m_Drive;
+  RunRunIntake m_RunIntake;
+  RunBelt m_RunBelt;
+  SpinUp m_SpinUp;
+  ShootSequence m_ShootSequence;
   frc2::InstantCommand m_resetGyro{[this] {m_driveSubsystem.ResetGyroscope();}, {&m_driveSubsystem}};
 
   //chooser for autonomous

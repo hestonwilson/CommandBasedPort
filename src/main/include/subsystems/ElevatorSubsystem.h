@@ -6,7 +6,9 @@
 #include <frc/controller/ElevatorFeedforward.h>
 #include "Constants.h"
 #include <frc/trajectory/TrapezoidProfile.h>
-/** ElevatorSubsystem is a ProfiledPIDSubsystem that uses frc::TrapezoidProfile and PID to control the elevator
+
+/** ElevatorSubsystem is a ProfiledPIDSubsystem that uses frc::TrapezoidProfile and PID to control the elevator's
+ * motion up and down.
  **/
 class ElevatorSubsystem : public frc2::ProfiledPIDSubsystem<units::meters> {
  public:

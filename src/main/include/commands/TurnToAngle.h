@@ -11,10 +11,10 @@
 
 #include "Constants.h"
 
-class TurnToAngleCommand : public frc2::CommandHelper<frc2::PIDCommand, TurnToAngleCommand> {
+class TurnToAngle : public frc2::CommandHelper<frc2::PIDCommand, TurnToAngle> {
  public:
  
-  TurnToAngleCommand(units::degree_t targetAngle, DriveSubsystem* drivetrain);
+  TurnToAngle(units::degree_t targetAngle, DriveSubsystem* drivetrain);
   // void Execute() override;
   bool IsFinished() override;
   // void End(bool interrupted); //this command will likely not be bound to any triggers.

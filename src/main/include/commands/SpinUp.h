@@ -3,7 +3,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-class SpinUpCommand : public frc2::CommandHelper<frc2::CommandBase, SpinUpCommand> {
+class SpinUp : public frc2::CommandHelper<frc2::CommandBase, SpinUp> {
 
 public:
    /**
@@ -11,7 +11,7 @@ public:
    *
    * @param subsystem The shooter subsystem used by this command.
    */
-  explicit SpinUpCommand(ShooterSubsystem* subsystem);
+  explicit SpinUp(ShooterSubsystem* subsystem);
   
   void Execute() override;
   

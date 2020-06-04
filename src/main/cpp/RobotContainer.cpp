@@ -9,10 +9,10 @@
 
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem),
-m_intakeCommand(&m_intakeSubsystem),
-m_beltCommand(&m_beltSubsystem),
-m_spinUpCommand(&m_shooterSubsystem),
-m_shootSequenceCommand(&m_beltSubsystem, &m_shooterSubsystem)
+m_RunIntake(&m_intakeSubsystem),
+m_RunBelt(&m_beltSubsystem),
+m_SpinUp(&m_shooterSubsystem),
+m_ShootSequence(&m_beltSubsystem, &m_shooterSubsystem)
 {
   // Initialize all of your commands and subsystems here
 
@@ -87,7 +87,7 @@ void RobotContainer::ConfigureButtonBindings() {
     .WhenPressed([this] {m_elevatorSubsystem.SetGoal(0_m);}, {&m_elevatorSubsystem});
 
   resetGyroButton.WhenPressed(&m_resetGyro);
-  RunIntakeButton.WhileHeld(RunIntakeCommand(&m_intakeSubsystem));
+  RunIntakeButton.WhileHeld(RunRunIntake(&m_intakeSubsystem));
 
 }
 

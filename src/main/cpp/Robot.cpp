@@ -22,19 +22,11 @@ void Robot::RobotInit() {}
  */
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
 
-/**
- * This function is called once each time the robot enters Disabled mode. You
- * can use it to reset any subsystem information you want to clear when the
- * robot is disabled.
- */
+
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {}
 
-/**
- * This autonomous runs the autonomous command selected by your {@link
- * RobotContainer} class.
- */
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
@@ -56,11 +48,9 @@ void Robot::TeleopInit() {
   }
 }
 
-/**
- * This function is called periodically during operator control.
- */
+
 void Robot::TeleopPeriodic() {
-  // m_Drive = m_robotContainer.getDrive(); //get drive command
+  
 }
 
 /**

@@ -9,7 +9,7 @@
 
 RobotContainer::RobotContainer() : 
 m_autonomousCommand(&m_subsystem),
-m_RunIntake(&m_intakeSubsystem),
+m_RunIntake(&m_intakeSubsystem, &m_beltSubsystem),
 m_RunBelt(&m_beltSubsystem),
 m_SpinUp(&m_shooterSubsystem),
 m_ShootSequence(&m_beltSubsystem, &m_shooterSubsystem)
@@ -82,12 +82,13 @@ void RobotContainer::ConfigureButtonBindings() {
   //move elevator up.
   frc2::JoystickButton(&m_leftJoystick, 2)
     .WhenPressed([this] {m_elevatorSubsystem.SetGoal(2_m);}, {&m_elevatorSubsystem});
+
     //move elevator down
   frc2::JoystickButton(&m_leftJoystick, 3)
     .WhenPressed([this] {m_elevatorSubsystem.SetGoal(0_m);}, {&m_elevatorSubsystem});
 
   resetGyroButton.WhenPressed(&m_resetGyro);
-  RunIntakeButton.WhileHeld(RunRunIntake(&m_intakeSubsystem));
+  RunIntakeButton.WhileHeld(RunIntake(&m_intakeSubsystem, &m_beltSubsystem));
 
 }
 

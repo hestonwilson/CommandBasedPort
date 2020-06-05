@@ -27,6 +27,7 @@
 namespace PenguinConstants {
   constexpr units::second_t DT = 20_ms;
   constexpr bool DEV_TESTING = true;
+
   namespace Limelight {
     constexpr double DEFAULT_VALUE = 0.0;
     constexpr units::inch_t HEIGHT = 38.5_in;
@@ -42,11 +43,7 @@ namespace PenguinConstants {
     const frc::Rotation2d TWO_PI_ROT = frc::Rotation2d(TWO_PI_RAD);
 
   }//MathConstants namespace
-  // namespace TurnPID {
-  //   double P{1.5};
-  //   double I{0};
-  //   double D{0.5};
-  // }
+
   namespace DrivetrainAutonomous {
   //TODO these are placeholders.
     constexpr auto ks = 1_V;
@@ -68,7 +65,7 @@ namespace PenguinConstants {
     //motion profile for rotation controller
     // frc::TrapezoidProfile<units::radians>::Constraints kRotationControllerConstraints{K_MAX_ANGULAR_VELOCITY, 
                                                                                             // K_MAX_ANGULAR_ACCELERATION};
-  }//DrivetrainAutonomous
+  }//DrivetrainAutonomous namespace
   namespace CAN {
     namespace SwerveConstants {
       constexpr int FL_DRIVE = 6;
@@ -120,6 +117,7 @@ namespace PenguinConstants {
       using Acceleration = units::compound_unit<Velocity, units::inverse<units::seconds>>;
       using kv_unit = units::compound_unit<units::volts, units::inverse<Velocity>>;
       using ka_unit = units::compound_unit<units::volts, units::inverse<Acceleration>>;
+
       constexpr units::volt_t kS = 0.5_V;
       constexpr units::volt_t kG = 1_V;
     

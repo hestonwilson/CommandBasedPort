@@ -18,12 +18,7 @@ void IntakeSubsystem::Periodic() {
 
 }
 void IntakeSubsystem::RunIntake() {
-    if(m_ballDetector.GetBallCount() < 5) {
-        m_intakeMotor.Set(1);
-    }
-    else {
-        m_intakeMotor.Set(0);
-    }
+  m_intakeMotor.Set(1);
 }
 
 

@@ -14,10 +14,7 @@ m_beltEncoder{PenguinConstants::DIO::BELT_ENCODER_A, PenguinConstants::DIO::BELT
   m_beltMotor.SetInverted(true);
 }
 
-/**
- * TODO: find solution to duplicating the lidar logic in both files,
- * 
- */
+
 void BeltSubsystem::Periodic() {
   m_ballDetector.UpdateDistance();
   m_ballDetector.UpdateBallCount();
@@ -25,7 +22,8 @@ void BeltSubsystem::Periodic() {
 }
 //not going to add any other logic to this function so that commands can add their own.
 void BeltSubsystem::RunBelt(double percentDampen) {
-  m_beltMotor.Set(1 * percentDampen);
+  double amountToSet = 1 * percentDampen;
+  m_beltMotor.Set(ControlMode::PercentOutput, amountToSet);
 }
 void BeltSubsystem::Stop() {
   m_beltMotor.Set(0);

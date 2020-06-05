@@ -1,19 +1,31 @@
 #include "commands/RunIntake.h"
 
-RunRunIntake::RunRunIntake(IntakeSubsystem* subsystem)
-: m_intake{subsystem} {
-  AddRequirements({subsystem});
+RunIntake::RunIntake(IntakeSubsystem* intake, BeltSubsystem* belt)
+: m_intake{intake},
+  m_belt{belt} {
+  AddRequirements({intake});
+  AddRequirements({belt});
 }
 
-void RunRunIntake::Execute() {
-m_intake->RunIntake();
+void RunIntake::Execute() {
+  if(m_belt->m_ballDetector.GetBallCount() < 5) {
+      m_intake->RunIntake();
+      if((m_belt->m_ballDetector.GetBallCount()) <= 2 && (m_belt->m_ballDetector.GetBallCurrentlyPassingInFrontOfLidar())) {
+          m_belt->RunBelt(1);
+      } else {
+      }
+    } else {
+        m_intake->Stop();
+        m_belt->Stop();
+    }
 }
 
-//RunRunIntake does not have an exit condition because it is bound to a trigger.
-bool RunRunIntake::IsFinished() {
-return false;
+//RunIntake does not have an exit condition because it is bound to a trigger.
+bool RunIntake::IsFinished() {
+  return false;
 }
 
-void RunRunIntake::End(bool interrupted) {
-m_intake->Stop();
+void RunIntake::End(bool interrupted) {
+  m_belt->Stop();
+  m_intake->Stop();
 }
